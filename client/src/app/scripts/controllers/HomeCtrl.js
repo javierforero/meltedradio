@@ -16,7 +16,7 @@ angular.module('meltedRadio')
     'User',
     'Playlist',
      function ($scope, $rootScope, $auth, $location, User, Playlist) {
-       $scope.myUser = '';
+       
        User.query({playlistId: ''},{userId: 1}).then(function(results){
          $scope.users = results;
        });
