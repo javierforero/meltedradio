@@ -35,9 +35,9 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
 
     if user.destroy
-      render json: user, status: 201
+      render json: {message: "User #{user.name} with id: #{user.id} was destroyed!"}, status: 200
     else
-      render json: {"Failed to delete user", status: 400}, status: 400
+      render json: {error: "Failed to delete user", status: 400}, status: 400
     end
   end
 
