@@ -30,6 +30,7 @@ RSpec.describe UsersController, type: :controller do
     it "deletes especified user" do
       delete :destroy, id: my_user
       expect(response).to have_http_status(200)
+      expect {my_user.reload}.to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 
