@@ -3,5 +3,6 @@ Rails.application.routes.draw do
     registrations: 'registrations'
   }
   resources :users, only: [:index, :show, :create, :update, :destroy]
+  resources :playlists
 
 end
