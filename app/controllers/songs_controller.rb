@@ -1,6 +1,13 @@
 class SongsController < ApplicationController
-  before_action :authenticate_user!
-  
+  before_action :authenticate_user!, except: [:index]
+
+  def index
+    playlist = Playlist.find(params[:playlist_id])
+    songs = playlist.songs
+
+    render json: songs, status: 200
+  end
+
   def create
     playlist = Playlist.find(params[:playlist_id])
     song = playlist.songs.new(song_params)
