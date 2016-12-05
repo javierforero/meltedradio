@@ -1,12 +1,14 @@
 class PlaylistsController < ApplicationController
 
   def index
-    playlists = Playlist.all
-    render json: playlist, status: 200
+    user = User.find(params[:user_id])
+    playlists = user.playlists
+    render json: playlists, status: 200
   end
 
   def create
-    playlist = Playlist.new(playlist_params)
+    user = User.find(params[:user_id])
+    playlist = user.playlists.new(playlist_params)
 
     if playlist.save
 
@@ -17,13 +19,15 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    playlist = Playlist.find(params[:id])
+    user = User.find(params[:user_id])
+    playlist = user.playlists.find(params[:id])
     render json: playlist, status: 200
 
   end
 
   def update
-    playlist = Playlist.find(params[:id])
+    user = User.find(params[:user_id])
+    playlist = user.playlists.find(params[:id])
 
     if playlist.update_attributes(playlist_params)
       render json: playlist, status: 200
@@ -33,7 +37,9 @@ class PlaylistsController < ApplicationController
   end
 
   def destroy
-    playlist = Playlist.find(params[:id])
+
+    user = User.find(params[:user_id])
+    playlist = user.playlists.find(params[:id])
 
     if playlist.destroy
       render json: {message: "#{playlist.title} was deleted", status: 200}, status: 200
@@ -45,7 +51,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :user_id)
+    params.require(:playlist).permit(:title)
   end
 
 end
