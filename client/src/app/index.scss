@@ -27,9 +27,15 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
-/**
- *  Do not remove the comments below. It's the markers used by gulp-inject to inject
- *  all your sass files automatically
- */
-// injector
-// endinjector
+.button {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  background-color: blue;
+  color: white;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-align: center;
+  padding-top: 14px;
+}
