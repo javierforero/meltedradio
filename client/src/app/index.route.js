@@ -7,10 +7,15 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'MainController',
       controllerAs: 'main'
     })
-    .state('users', {
-      url: '/users',
-      templateUrl: 'app/templates/users.html',
-      controller: 'UsersCtrl as users'
+    .state('sign_in', {
+      url: '/sign_in',
+      templateUrl: 'app/templates/sign_in.html',
+      controller: 'sign_in'
+    })
+    .state('sign_up', {
+      url: '/sign_up',
+      templateUrl: 'app/templates/sign_up.html',
+      controller: 'sign_up'
     });
 
   $urlRouterProvider.otherwise('/');

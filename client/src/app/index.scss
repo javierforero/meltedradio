@@ -39,3 +39,47 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   text-align: center;
   padding-top: 14px;
 }
+
+body {
+  background-image: url('../assets/images/icecream.gif');
+}
+
+#no-color {
+  background-color: transparent;
+}
+
+form.form-container {
+   margin: 160px auto;
+   text-align: center;
+   width: 80%;
+   form input {
+     border: 1px solid #dfe0e6;
+     border-radius: 2px;
+     -webkit-border-radius: 2px;
+   }
+
+   div.form-group input {
+     padding: 6px 10px;
+     height: 50px;
+     width: 100%;
+     max-width: 450px;
+     min-width: 200px;
+   }
+
+  div.form-group input.submit {
+     background-color: #5ea2c5;
+     color: white;
+     border: none;
+     width: 100%;
+     max-width: 450px;
+     min-width: 200px;
+     padding: 7px;
+     &:focus {
+       outline: none;
+     }
+     &:hover {
+       background-color: #71c9f7;
+     }
+   }
+
+ }
