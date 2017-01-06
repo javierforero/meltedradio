@@ -9,5 +9,9 @@
  */
 angular.module('meltedRadio')
   .controller('SignupCtrl', function () {
-    this.thing = 'yeah';
+
+    // submit function
+    this.signUp = function(user) {
+      alert(user.username);
+    };
   });
