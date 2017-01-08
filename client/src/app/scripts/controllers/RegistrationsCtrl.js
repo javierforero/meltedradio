@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc function
- * @name meltedRadioApp.controller:SignupCtrl
+ * @name meltedRadioApp.controller:RegistrationsCtrl
  * @description
- * # SignupCtrl
+ * # RegistrationsCtrl
  * Controller of the meltedRadioApp
  */
 angular.module('meltedRadio')
-  .controller('SignupCtrl', function () {
+  .controller('RegistrationsCtrl', function () {
 
     // submit function
     this.signUp = function(user) {
-      alert(user.username);
+      console.log(user.username, user.email, user.password);
     };
   });

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name meltedRadioApp.controller:SigninCtrl
+ * @name meltedRadioApp.controller:UserSessionsCtrl
  * @description
- * # SigninCtrl
+ * # UserSessionsCtrl
  * Controller of the meltedRadio
  */
 angular.module('meltedRadio')
-  .controller('SigninCtrl', function () {
+  .controller('SessionsCtrl', function () {
     this.thing = 'yeah';
   });

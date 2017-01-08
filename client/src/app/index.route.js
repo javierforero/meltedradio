@@ -9,13 +9,13 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     })
     .state('sign_in', {
       url: '/sign_in',
-      templateUrl: 'app/templates/sign_in.html',
-      controller: 'SigninCtrl as signin'
+      templateUrl: 'app/views/user_sessions/new.html',
+      controller: 'SessionsCtrl as signin'
     })
     .state('sign_up', {
       url: '/sign_up',
-      templateUrl: 'app/templates/sign_up.html',
-      controller: 'SignupCtrl as signup'
+      templateUrl: 'app/views/user_registrations/new.html',
+      controller: 'RegistrationsCtrl as signup'
     });
 
   $urlRouterProvider.otherwise('/');
