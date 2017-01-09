@@ -8,10 +8,19 @@
  * Controller of the meltedRadioApp
  */
 angular.module('meltedRadio')
-  .controller('RegistrationsCtrl', function () {
-
-    // submit function
-    this.signUp = function(user) {
-      console.log(user.username, user.email, user.password);
+  .controller('RegistrationsCtrl', [
+    '$scope',
+    '$auth',
+    function($scope, $auth) {
+    $scope.handleRegBtnClick = function() {
+       $auth.submitRegistration($scope.registrationForm)
+         .then(function(resp) {
+           alert("success!");
+           console(resp);
+         })
+         .catch(function(resp) {
+           alert("sign up failed!");
+           console.log(resp);
+         });
     };
-  });
+  }]);

@@ -16,7 +16,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .config(routerConfig)
   .config(function($authProvider) {
      $authProvider.configure({
-         apiUrl: 'http://localhost:3000/'
+         apiUrl: 'http://localhost:3000'
      });
    })
   .run(runBlock)
