@@ -1,7 +1,7 @@
 export function routerConfig ($stateProvider, $urlRouterProvider) {
   'ngInject';
   $stateProvider
-    .state('home', {
+    .state('main', {
       url: '/',
       templateUrl: 'app/main/main.html',
       controller: 'MainController',
@@ -16,6 +16,11 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       url: '/sign_up',
       templateUrl: 'app/views/user_registrations/new.html',
       controller: 'RegistrationsCtrl as signup'
+    })
+    .state('home', {
+      url: '/home',
+      templateUrl: 'app/views/main.html',
+      controller: 'HomeCtrl as home'
     });
 
   $urlRouterProvider.otherwise('/');
