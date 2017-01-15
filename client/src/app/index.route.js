@@ -19,7 +19,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     })
     .state('home', {
       url: '/home',
-      templateUrl: 'app/views/main.html',
+      templateUrl: 'app/views/home.html',
       controller: 'HomeCtrl as home'
     });
 

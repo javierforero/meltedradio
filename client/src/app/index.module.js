@@ -24,10 +24,4 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
   .directive('acmeNavbar', NavbarDirective)
-  .directive('acmeMalarkey', MalarkeyDirective)
-  .run(['$rootScope', '$location', '$log', function($rootScope, $location, $log) {
-    $rootScope.$on('auth:login-success', function() {
-      $log.log("it worked! you're logged in!");
-      $location.path('/home');
-    });
-  }]);
+  .directive('acmeMalarkey', MalarkeyDirective);
