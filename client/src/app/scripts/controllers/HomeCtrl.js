@@ -8,5 +8,18 @@
  * Controller of the meltedRadio
  */
 angular.module('meltedRadio')
-  .controller('HomeCtrl', function () {
-  });
+  .controller('HomeCtrl', [
+    '$scope',
+    '$rootScope',
+    '$auth',
+    '$location',
+     function ($scope, $rootScope, $auth, $location) {
+
+       $scope.signOut = function() {
+         $auth.signOut();
+       };
+
+       $rootScope.$on('auth:logout-success', function(ev) {
+         $location.path('/');
+       });
+    }]);

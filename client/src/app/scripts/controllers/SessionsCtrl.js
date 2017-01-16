@@ -15,13 +15,11 @@ angular.module('meltedRadio')
     '$location',
     function($scope, $auth, $rootScope, $location){
 
-
       $scope.submitLogin = function(loginForm) {
         $auth.submitLogin(loginForm);
       };
 
       $rootScope.$on('auth:login-success', function(ev, user) {
-        $scope.myUser = user;
         $location.path('/home');
       });
       $rootScope.$on('auth:login-error', function(ev, reason) {
