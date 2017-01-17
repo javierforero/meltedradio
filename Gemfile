@@ -17,9 +17,6 @@ gem 'puma', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -43,3 +40,5 @@ gem 'devise_token_auth'
 gem 'omniauth'
 
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'angularjs-rails-resource', '~> 2.0.0'

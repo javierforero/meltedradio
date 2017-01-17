@@ -24,4 +24,10 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
   .directive('acmeNavbar', NavbarDirective)
-  .directive('acmeMalarkey', MalarkeyDirective);
+  .directive('acmeMalarkey', MalarkeyDirective)
+  .factory('User', railsResourceFactory => {
+    return railsResourceFactory({
+      url: '/api/users',
+      name: 'users'
+    });
+  });
