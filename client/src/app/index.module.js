@@ -9,7 +9,7 @@ import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service'
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
-angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'ng-token-auth'])
+angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'ng-token-auth', 'rails'])
   .constant('malarkey', malarkey)
   .constant('moment', moment)
   .config(config)
@@ -27,7 +27,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .directive('acmeMalarkey', MalarkeyDirective)
   .factory('User', railsResourceFactory => {
     return railsResourceFactory({
-      url: '/api/users',
-      name: 'users'
+      url: 'http://localhost:3000/users',
+      name: 'user'
     });
   });

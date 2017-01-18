@@ -13,8 +13,13 @@ angular.module('meltedRadio')
     '$rootScope',
     '$auth',
     '$location',
-     function ($scope, $rootScope, $auth, $location) {
+    'User',
+     function ($scope, $rootScope, $auth, $location, User) {
 
+       User.query().then(function(results){
+         $scope.users = results;
+       });
+       
        $scope.signOut = function() {
          $auth.signOut();
        };
@@ -22,4 +27,6 @@ angular.module('meltedRadio')
        $rootScope.$on('auth:logout-success', function(ev) {
          $location.path('/');
        });
+
+
     }]);
