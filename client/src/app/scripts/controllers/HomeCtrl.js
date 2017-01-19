@@ -14,12 +14,14 @@ angular.module('meltedRadio')
     '$auth',
     '$location',
     'User',
-     function ($scope, $rootScope, $auth, $location, User) {
-
-       User.query().then(function(results){
+    'Playlist',
+     function ($scope, $rootScope, $auth, $location, User, Playlist) {
+       $scope.myUser = '';
+       User.query({playlistId: ''},{userId: 1}).then(function(results){
          $scope.users = results;
        });
-       
+
+
        $scope.signOut = function() {
          $auth.signOut();
        };

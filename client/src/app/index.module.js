@@ -25,9 +25,15 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .controller('MainController', MainController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective)
-  .factory('User', railsResourceFactory => {
+  .factory('Playlist', railsResourceFactory => {
     return railsResourceFactory({
-      url: 'http://localhost:3000/users',
+      url: 'http://localhost:3000/playlists',
+      name: 'playlist'
+    });
+  })
+  .factory('User',function(railsResourceFactory){
+    return railsResourceFactory({
+      url: 'http://localhost:3000/users/{{userId}}/playlists/{{playlistId}}',
       name: 'user'
     });
   });
