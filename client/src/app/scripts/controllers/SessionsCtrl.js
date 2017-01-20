@@ -13,12 +13,22 @@ angular.module('meltedRadio')
     '$auth',
     '$rootScope',
     '$location',
-    function($scope, $auth, $rootScope, $location){
+    'User',
+    'Playlist',
+    function($scope, $auth, $rootScope, $location, User, Playlist){
+
+
        var setUser = function(obj) {
-           $window.sessionStorage.currentUser = obj;
+           $rootScope.currentUser = obj.name;
        };
+
+       $scope.showMe = function() {
+         alert($rootScope.currentUser);
+       };
+
       $scope.submitLogin = function(loginForm) {
         $auth.submitLogin(loginForm).then(function(user) {
+
                 setUser(user);
         });
       };
@@ -29,5 +39,18 @@ angular.module('meltedRadio')
       });
       $rootScope.$on('auth:login-error', function(ev, reason) {
         $scope.error = reason.errors[0];
+      });
+
+      User.query({playlistId: ''},{userId: 1}).then(function(results){
+        $scope.users = results;
+      });
+
+
+      $scope.signOut = function() {
+        $auth.signOut();
+      };
+
+      $rootScope.$on('auth:logout-success', function(ev) {
+        $location.path('/');
       });
   }]);
