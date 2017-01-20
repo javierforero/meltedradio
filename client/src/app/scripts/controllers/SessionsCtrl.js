@@ -14,11 +14,12 @@ angular.module('meltedRadio')
     '$rootScope',
     '$location',
     function($scope, $auth, $rootScope, $location){
-
+       var setUser = function(obj) {
+           $window.sessionStorage.currentUser = obj;
+       };
       $scope.submitLogin = function(loginForm) {
         $auth.submitLogin(loginForm).then(function(user) {
-          console.log(user);
-          $rootScope.myUser = user;
+                setUser(user);
         });
       };
 

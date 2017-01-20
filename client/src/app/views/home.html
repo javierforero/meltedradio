@@ -1,7 +1,7 @@
 <h1>Home Page</h1>
 <ul>
   <li>{{user.name}}</li>
-  <li>{{$rootScope.myUser.name}}</li>
+  <li>{{myUser.name}}</li>
   <li ng-show="user.id"><a ng-click="signOut()">Sign out</a></li>
   <li ng-show="!user.id">Sign in</li>
 </ul>
