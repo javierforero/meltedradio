@@ -20,7 +20,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/home',
       templateUrl: 'app/views/home.html',
-      controller: 'SessionsCtrl as home'
+      controller: 'HomeCtrl as home'
     });
 
   $urlRouterProvider.otherwise('/');

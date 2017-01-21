@@ -15,10 +15,13 @@ angular.module('meltedRadio')
     '$location',
     'User',
     'Playlist',
-     function ($scope, $rootScope, $auth, $location, User, Playlist) {
+    'localStorageService',
+     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService) {
 
-       User.query({playlistId: ''},{userId: 1}).then(function(results){
-         $scope.users = results;
+       $scope.userSignedIn = localStorageService.get('currentUser');
+
+       User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
+         $scope.playlists = results;
        });
 
 
@@ -27,6 +30,8 @@ angular.module('meltedRadio')
        };
 
        $rootScope.$on('auth:logout-success', function(ev) {
+
+         localStorageService.remove('currentUser');
          $location.path('/');
        });
 

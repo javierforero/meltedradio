@@ -15,15 +15,12 @@ angular.module('meltedRadio')
     '$location',
     'User',
     'Playlist',
-    function($scope, $auth, $rootScope, $location, User, Playlist){
+    'localStorageService',
+    function($scope, $auth, $rootScope, $location, User, Playlist, localStorageService){
 
 
        var setUser = function(obj) {
-           $rootScope.currentUser = obj.name;
-       };
-
-       $scope.showMe = function() {
-         alert($rootScope.currentUser);
+          localStorageService.set('currentUser', obj);
        };
 
       $scope.submitLogin = function(loginForm) {
