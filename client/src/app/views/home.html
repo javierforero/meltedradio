@@ -1,10 +1,10 @@
-<h1>Home Page</h1>
-<ul>
-  <li>{{user.name}}</li>
-  <li ng-show="user.id"><a ng-click="signOut()">Sign out</a></li>
-  <li ng-show="!user.id">Sign in</li>
-</ul>
-<p>This is the home page.</p>
-<ul ng-repeat="playlist in playlists">
-  <li>{{playlist.title}}</li>
-</ul>
+<div class="home-page">
+  <h1>Home Page</h1>
+  <ul>
+    <li>Hello {{user.name}}</li>
+  </ul>
+  <h3>Playlists: </h3>
+  <ul ng-repeat="playlist in playlists">
+    <li>{{playlist.title}}</li>
+  </ul>
+</div>

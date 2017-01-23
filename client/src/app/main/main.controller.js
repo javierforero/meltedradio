@@ -7,6 +7,7 @@ export class MainController {
     this.creationDate = 1481639704107;
     this.toastr = toastr;
 
+
     this.activate($timeout, webDevTec);
   }
 

@@ -23,17 +23,5 @@ angular.module('meltedRadio')
        User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
          $scope.playlists = results;
        });
-
-
-       $scope.signOut = function() {
-         $auth.signOut();
-       };
-
-       $rootScope.$on('auth:logout-success', function(ev) {
-
-         localStorageService.remove('currentUser');
-         $location.path('/');
-       });
-
-
+       
     }]);

@@ -23,7 +23,16 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <nav class="nav-bar" ng-controller="NavCtrl as nav">
+      <div class="logo" ng-click="nav.pageRedirect()">
+        <h1>Melted Radio</h1>
+      </div>
+      <ul class="nav-menu">
+        <li ng-show="!user.id"><a ui-sref="sign_in">Sign In</a></li>
+        <li ng-show="!user.id"><a ui-sref="sign_up">Sign Up</a></li>
+        <li ng-show="user.id" ng-click="signOut()"><a>Sign Out</a></li>
+      </ul>
+    </nav>
     <ui-view></ui-view>
 
     <!-- build:js(src) scripts/vendor.js -->
@@ -41,6 +50,7 @@
     <!-- angular templates will be automatically converted in js and inserted here -->
     <!-- endinject -->
     <!-- endbuild -->
+  <script src="app/scripts/controllers/NavCtrl.js"></script>
   <script src="app/scripts/controllers/RegistrationsCtrl.js"></script>
   <script src="app/scripts/controllers/SessionsCtrl.js"></script>
   <script src="app/scripts/controllers/HomeCtrl.js"></script>
