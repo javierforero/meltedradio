@@ -30,6 +30,7 @@
       <ul class="nav-menu">
         <li ng-show="!user.id"><a ui-sref="sign_in">Sign In</a></li>
         <li ng-show="!user.id"><a ui-sref="sign_up">Sign Up</a></li>
+        <li ng-show="user.id"><a>{{user.name}}</a></li>
         <li ng-show="user.id" ng-click="signOut()"><a>Sign Out</a></li>
       </ul>
     </nav>

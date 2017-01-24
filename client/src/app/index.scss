@@ -62,14 +62,16 @@ nav.nav-bar {
   }
 
   ul {
-    width: 40%;
+    width: 25%;
     float: right;
     margin-top: 10px;
+    margin-right: 70px;
     li {
-      width: 33%;
+      width: 50%;
       float: left;
       font-size: 18px;
       a {
+        text-decoration: none;
         color: grey;
       }
     }
