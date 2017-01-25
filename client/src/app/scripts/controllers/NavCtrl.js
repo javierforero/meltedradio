@@ -17,7 +17,13 @@ angular.module('meltedRadio')
      function ($scope, $rootScope, $auth, $location, localStorageService) {
 
        this.pageRedirect = function() {
-         $location.path('/');
+
+         if($rootScope.user.id) {
+           $location.path('/users/'+ $rootScope.user.id);
+           
+         } else {
+           $location.path('/');
+         }
        };
 
        $scope.signOut = function() {

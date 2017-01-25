@@ -23,5 +23,7 @@ angular.module('meltedRadio')
        User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
          $scope.playlists = results;
        });
-       
+
+       $scope.url = $location.url();
+
     }]);
