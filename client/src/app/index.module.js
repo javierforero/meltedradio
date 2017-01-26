@@ -36,7 +36,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   })
   .factory('User',function(railsResourceFactory){
     return railsResourceFactory({
-      url: 'http://localhost:3000/users/{{userId}}/playlists/{{playlistId}}',
+      url: 'http://localhost:3000/users/{{userId}}/playlists',
       name: 'user'
     });
   });
