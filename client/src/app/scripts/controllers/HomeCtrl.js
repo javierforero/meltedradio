@@ -16,7 +16,8 @@ angular.module('meltedRadio')
     'User',
     'Playlist',
     'localStorageService',
-     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService) {
+    '$uibModal',
+     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal) {
 
        $scope.userSignedIn = localStorageService.get('currentUser');
 
@@ -24,6 +25,12 @@ angular.module('meltedRadio')
          $scope.playlists = results;
        });
 
-       $scope.url = $location.url();
+       $scope.open = function() {
+         $uibModal.open({
+           templateUrl: '/app/views/addplaylist.html',
+           controller: 'AddPlaylistCtrl as play'
+         });
+       };
+
 
     }]);
