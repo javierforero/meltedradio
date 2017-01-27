@@ -31,7 +31,7 @@ angular.module('meltedRadio')
       };
 
       $rootScope.$on('auth:login-success', function(ev, user) {
-        $location.path('/home');
+        $location.path('/users/'+ user.id);
 
       });
       $rootScope.$on('auth:login-error', function(ev, reason) {

@@ -18,7 +18,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'RegistrationsCtrl as signup'
     })
     .state('home', {
-      url: '/home',
+      url: '/users/:id',
       templateUrl: 'app/views/home.html',
       controller: 'HomeCtrl as home'
     });

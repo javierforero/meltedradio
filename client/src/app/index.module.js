@@ -22,6 +22,9 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
    .config(function(localStorageServiceProvider){
      localStorageServiceProvider.setPrefix('meltedRadio');
    })
+   .config(function(railsSerializerProvider){
+     railsSerializerProvider.underscore(angular.identity).camelize(angular.identity);
+   })
   .run(runBlock)
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
@@ -36,7 +39,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   })
   .factory('User',function(railsResourceFactory){
     return railsResourceFactory({
-      url: 'http://localhost:3000/users/{{userId}}/playlists/{{playlistId}}',
+      url: 'http://localhost:3000/users/{{userId}}/playlists',
       name: 'user'
     });
   });
