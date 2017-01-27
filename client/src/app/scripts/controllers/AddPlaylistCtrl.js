@@ -14,18 +14,25 @@ angular.module('meltedRadio')
     '$uibModalInstance',
     'localStorageService',
     'User',
-     function ($scope, $rootScope, $uibModalInstance, localStorageService, User) {
+    '$http',
+     function ($scope, $rootScope, $uibModalInstance, localStorageService, User, $http) {
 
        var currentUser = localStorageService.get('currentUser');
        $scope.submit = function() {
          if($scope.text) {
-           console.log($scope.text);
-           console.log(currentUser.id);
-           new User({
 
-               userId: currentUser.id,
-               title: $scope.text
-           }).create({title: $scope.text});
+          $http({
+            method: 'POST',
+            url: 'http://localhost:3000/users/' + currentUser.id + '/playlists',
+            data: {
+              title: $scope.text
+            }
+          }).then(function(results){
+            console.log(results);
+          }, function(error) {
+            console.log(error);
+          });
+
            $scope.text = '';
            $uibModalInstance.close();
          }

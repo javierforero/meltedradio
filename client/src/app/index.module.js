@@ -22,6 +22,9 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
    .config(function(localStorageServiceProvider){
      localStorageServiceProvider.setPrefix('meltedRadio');
    })
+   .config(function(railsSerializerProvider){
+     railsSerializerProvider.underscore(angular.identity).camelize(angular.identity);
+   })
   .run(runBlock)
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
