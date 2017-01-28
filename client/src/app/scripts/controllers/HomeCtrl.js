@@ -17,14 +17,18 @@ angular.module('meltedRadio')
     'Playlist',
     'localStorageService',
     '$uibModal',
-     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal) {
+    'ApiSync',
+     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, ApiSync) {
 
        $scope.userSignedIn = localStorageService.get('currentUser');
 
        User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
-         $scope.playlists = results;
+         ApiSync.setPlaylists(results);
        });
 
+       $scope.playlists = function() {
+         return ApiSync.getPlaylists();
+       };
 
        $scope.open = function() {
          $uibModal.open({

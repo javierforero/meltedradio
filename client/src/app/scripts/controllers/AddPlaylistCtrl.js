@@ -15,7 +15,8 @@ angular.module('meltedRadio')
     'localStorageService',
     'User',
     '$http',
-     function ($scope, $rootScope, $uibModalInstance, localStorageService, User, $http) {
+    'ApiSync',
+     function ($scope, $rootScope, $uibModalInstance, localStorageService, User, $http, ApiSync) {
 
        var currentUser = localStorageService.get('currentUser');
        $scope.submit = function() {
@@ -28,8 +29,7 @@ angular.module('meltedRadio')
               title: $scope.text
             }
           }).then(function(results){
-            console.log(results);
-            $scope.playlists = results.data;
+            ApiSync.setPlaylists(results.data);
           }, function(error) {
             console.log(error);
           });

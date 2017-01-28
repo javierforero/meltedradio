@@ -31,6 +31,19 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .controller('MainController', MainController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective)
+  .factory('ApiSync', function(){
+    var ApiSync = {};
+
+    ApiSync.setPlaylists = function(obj) {
+         ApiSync.playlists = obj;
+    };
+
+    ApiSync.getPlaylists = function() {
+      return ApiSync.playlists;
+    };
+
+    return ApiSync;
+  })
   .factory('Playlist', railsResourceFactory => {
     return railsResourceFactory({
       url: 'http://localhost:3000/playlists',
