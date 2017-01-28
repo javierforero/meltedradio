@@ -29,6 +29,7 @@ angular.module('meltedRadio')
             }
           }).then(function(results){
             console.log(results);
+            $scope.playlists = results.data;
           }, function(error) {
             console.log(error);
           });

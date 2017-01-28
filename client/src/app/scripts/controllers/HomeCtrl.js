@@ -17,8 +17,7 @@ angular.module('meltedRadio')
     'Playlist',
     'localStorageService',
     '$uibModal',
-    '$http',
-     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, $http) {
+     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal) {
 
        $scope.userSignedIn = localStorageService.get('currentUser');
 
