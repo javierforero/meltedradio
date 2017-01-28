@@ -12,7 +12,7 @@ class PlaylistsController < ApplicationController
 
     if playlist.save
 
-      render json: playlist, status: 200
+      render json: user.playlists, status: 200
     else
       render json: {error: "wrong/missing inputs, playlist not created", status: 422}, status: 422
     end
