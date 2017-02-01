@@ -27,6 +27,15 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
+.clearfix::before,
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
 .button {
   position: relative;
   display: inline-block;
@@ -79,9 +88,13 @@ nav.nav-bar {
 
 
 }
+html {
+  height: 100%;
+  width: 100%;
+}
 body {
-  background-image: url('../assets/images/icecream.gif');
   text-align: center;
+  height: 100%;
   ul li {
     text-decoration: none;
     list-style: none;
@@ -95,12 +108,18 @@ body {
   }
 }
 
+div.gif-container {
+  background-image: url('../assets/images/icecream.gif');
+  height: 100%;
+  position: relative;
+}
+
 #no-color {
   background-color: transparent;
 }
 
 form.form-container {
-   margin: 160px auto;
+   margin: 0 auto;
    text-align: center;
    width: 80%;
    form input {
