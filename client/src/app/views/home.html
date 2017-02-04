@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 playlist">
       <h3>Playlists</h3>
-      <a class="button" ng-click="open()"> + New Playlist</a>
+      <a class="button" ng-click="newPlaylist()"> + New Playlist</a>
       <ul class="playlist-list" ng-repeat="playlist in playlists()">
         <li>
           <h4 ng-click="setPlaylist(playlist)">{{playlist.title}}</h4>
@@ -12,18 +12,18 @@
     <div class="col-md-8">
       <h1>{{currentPlaylist.title}}</h1>
       <div ng-show="currentPlaylist">
-        <a class="button" ng-click=""> + New Song</a>
+        <a class="button" ng-click="newSong()"> + New Song</a>
         <table class="songs-table">
           <thead>
             <tr>
               <th>SONG</th>
               <th>ARTIST</th>
-              <th>ALBUM</th>
+              <th>URL</th>
             </tr>
             <tr ng-repeat="song in songs">
               <td>{{song.title}}</td>
               <td>{{song.artist}}</td>
-              <td>{{song.album}}</td>
+              <td>{{song.url}}</td>
             </tr>
           </thead>
         </table>
