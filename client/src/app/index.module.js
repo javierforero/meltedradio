@@ -44,7 +44,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
 
     return ApiSync;
   })
-  .factory('Playlist', railsResourceFactory => {
+  .factory('Playlist', function(railsResourceFactory) {
     return railsResourceFactory({
       url: 'http://localhost:3000/playlists',
       name: 'playlist'
@@ -54,5 +54,11 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
     return railsResourceFactory({
       url: 'http://localhost:3000/users/{{userId}}/playlists',
       name: 'user'
+    });
+  })
+  .factory('Song', function(railsResourceFactory){
+    return railsResourceFactory({
+      url: 'http://localhost:3000/playlists/{{playlistId}}/songs',
+      name: 'song'
     });
   });

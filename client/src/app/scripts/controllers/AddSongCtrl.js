@@ -20,7 +20,14 @@ angular.module('meltedRadio')
     'ApiSync',
      function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModalInstance, ApiSync) {
 
+       $scope.submit = function() {
+         if($scope.songTitle && $scope.songArtist && $scope.songUrl) {
+           console.log($scope.songTitle, $scope.songArtist, $scope.songUrl);
+         }
 
+         $scope.newSong = '';
+         $uibModalInstance.close();
+       };
        $scope.dismiss = function() {
          $uibModalInstance.dismiss('cancel');
        };
