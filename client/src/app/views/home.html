@@ -1,8 +1,33 @@
 <div class="home-page">
-  <h2>Hello {{user.name}}!</h2>
-  <a class="button" ng-click="open()"> + playlist</a>
-  <h3>Playlists: </h3>
-  <ul ng-repeat="playlist in playlists()">
-    <li>{{playlist.title}}</li>
-  </ul>
+  <div class="row">
+    <div class="col-md-4 playlist">
+      <h3>Playlists</h3>
+      <a class="button" ng-click="open()"> + New Playlist</a>
+      <ul class="playlist-list" ng-repeat="playlist in playlists()">
+        <li>
+          <h4 ng-click="setPlaylist(playlist)">{{playlist.title}}</h4>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <h1>{{currentPlaylist.title}}</h1>
+      <div ng-show="currentPlaylist">
+        <a class="button" ng-click=""> + New Song</a>
+        <table class="songs-table">
+          <thead>
+            <tr>
+              <th>SONG</th>
+              <th>ARTIST</th>
+              <th>ALBUM</th>
+            </tr>
+            <tr ng-repeat="song in songs">
+              <td>{{song.title}}</td>
+              <td>{{song.artist}}</td>
+              <td>{{song.album}}</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
