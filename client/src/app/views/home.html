@@ -20,7 +20,7 @@
               <th>ARTIST</th>
               <th>URL</th>
             </tr>
-            <tr ng-repeat="song in songs">
+            <tr ng-repeat="song in songs()">
               <td>{{song.title}}</td>
               <td>{{song.artist}}</td>
               <td><a href="{{song.url}}" target="_blank">link</a></td>

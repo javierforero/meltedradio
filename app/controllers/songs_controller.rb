@@ -13,7 +13,7 @@ class SongsController < ApplicationController
     song = playlist.songs.new(song_params)
     song.user = current_user
     if song.save
-      render json: song, status: 200
+      render json: playlist.songs, status: 200
     else
       render json: {error: "wrong/missing inputs, song not created #{song.user_id}", status: 422}, status: 422
     end

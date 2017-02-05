@@ -34,6 +34,10 @@ angular.module('meltedRadio')
          return ApiSync.getPlaylists();
        };
 
+       $scope.songs = function() {
+         return  ApiSync.getSongs();
+       };
+
        $scope.newPlaylist = function() {
          $uibModal.open({
            templateUrl: '/app/views/addplaylist.html',
@@ -46,7 +50,7 @@ angular.module('meltedRadio')
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
 
            Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
-              $scope.songs = songs;
+              ApiSync.setSongs(songs);
            });
        };
 

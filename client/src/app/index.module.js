@@ -38,8 +38,16 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
          ApiSync.playlists = obj;
     };
 
+    ApiSync.setSongs = function(obj) {
+        ApiSync.songs = obj;
+    };
+
     ApiSync.getPlaylists = function() {
       return ApiSync.playlists;
+    };
+
+    ApiSync.getSongs = function() {
+      return ApiSync.songs;
     };
 
     return ApiSync;
