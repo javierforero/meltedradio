@@ -19,7 +19,8 @@ angular.module('meltedRadio')
     '$uibModal',
     'Song',
     'ApiSync',
-     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync) {
+    '$http',
+     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http) {
 
        $scope.userSignedIn = localStorageService.get('currentUser');
        $scope.currentPlaylist = null;
@@ -59,6 +60,19 @@ angular.module('meltedRadio')
            templateUrl: '/app/views/addsong.html',
            controller: 'AddSongCtrl as song'
          });
+       };
+
+       $scope.deleteSong = function(song) {
+
+          $http({
+            method: 'DELETE',
+            url: 'http://localhost:3000/playlists/' + $scope.currentPlaylist.id +'/songs/'+ song.id
+          }).then(function(response){
+            
+            $scope.setPlaylist(response.data.current_playlist);
+          }, function(error){
+            console.log(error);
+          });
        };
 
 

@@ -30,12 +30,12 @@ class SongsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     playlist = Playlist.find(params[:playlist_id])
     song = playlist.songs.find(params[:id])
 
     if song.destroy
-      render json: {message: "The song #{current_user} was deleted", status: 200}, status: 200
+      render json: {message: "The song #{current_user} was deleted", status: 200, current_playlist: playlist}, status: 200
     else
       render json: {error: "Failed to delete song", status: 400}, status: 400
     end
