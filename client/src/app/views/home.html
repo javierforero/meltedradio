@@ -1,7 +1,6 @@
 <div class="home-page">
-  <div class="row">
-    <div class="col-md-4 playlist">
-      <h3>Playlists</h3>
+    <div class="playlist">
+      <h3>Your Music</h3>
       <a class="button" ng-click="newPlaylist()"> + New Playlist</a>
       <ul class="playlist-list" ng-repeat="playlist in playlists()">
         <li>
@@ -9,10 +8,14 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-8">
-      <h1>{{currentPlaylist.title}}</h1>
-      <div ng-show="currentPlaylist">
+    <div class="playlist-content">
+      <div class="video">
+      </div>
+      <div>
+        <h1>{{currentPlaylist.title}}</h1>
         <a class="button" ng-click="newSong()"> + New Song</a>
+      </div>
+      <div ng-show="currentPlaylist">
         <table class="songs-table">
           <thead>
             <tr>
@@ -31,5 +34,4 @@
         </table>
       </div>
     </div>
-  </div>
 </div>

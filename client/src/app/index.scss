@@ -27,6 +27,12 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
+*, *::before, *::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .clearfix::before,
 .clearfix::after {
     content: " ";
@@ -156,8 +162,8 @@ form.form-container {
 
  .home-page {
    position: relative;
-   width: 90%;
    margin: 0 auto;
+   height: calc(100% - 80px);
  }
 
  .playlist-list {
@@ -167,6 +173,25 @@ form.form-container {
 
 .playlist {
   background-color: #EAE1F3;
+  text-align: left;
+  padding: 0 40px;
+  // min-width: 250px;
+  float: left;
+  height: 100%;
+  width: 20%;
+}
+
+.playlist-content {
+  float: right;
+  height: 100%;
+  width: 80%;
+}
+
+div.video {
+  width: 65%;
+  height: 350px;
+  float: left;
+  background-color: black;
 }
 
 table.songs-table {
