@@ -16,11 +16,13 @@ angular.module('meltedRadio')
     'localStorageService',
      function ($scope, $rootScope, $auth, $location, localStorageService) {
 
+       $scope.userSignedIn = localStorageService.get('currentUser');
+
        this.pageRedirect = function() {
 
          if($rootScope.user.id) {
            $location.path('/users/'+ $rootScope.user.id);
-           
+
          } else {
            $location.path('/');
          }
@@ -35,4 +37,9 @@ angular.module('meltedRadio')
          localStorageService.remove('currentUser');
          $location.path('/');
        });
+
+       $scope.getVideos = function () {
+         alert($scope.text);
+       };
+
    }]);

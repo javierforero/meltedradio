@@ -68,7 +68,7 @@ angular.module('meltedRadio')
             method: 'DELETE',
             url: 'http://localhost:3000/playlists/' + $scope.currentPlaylist.id +'/songs/'+ song.id
           }).then(function(response){
-            
+
             $scope.setPlaylist(response.data.current_playlist);
           }, function(error){
             console.log(error);

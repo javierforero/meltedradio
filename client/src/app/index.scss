@@ -201,3 +201,20 @@ table.songs-table {
     text-align: center;
   }
 }
+
+div.logo, form.search-container {
+  width: 33.33%;
+  float: left;
+}
+
+form.search-container {
+  position: relative;
+  margin-top: 14px;
+
+  input {
+    width: 90%;
+    height: 35px;
+    padding: 10px;
+    outline: none;
+  }
+}
