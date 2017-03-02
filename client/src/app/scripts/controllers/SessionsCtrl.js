@@ -31,6 +31,7 @@ angular.module('meltedRadio')
       };
 
       $rootScope.$on('auth:login-success', function(ev, user) {
+
         $location.path('/users/'+ user.id);
 
       });

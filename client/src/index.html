@@ -28,7 +28,7 @@
       <div class="logo" ng-click="nav.pageRedirect()">
         <h1>Melted Radio</h1>
       </div>
-      <form ng-submit="getVideos()" class="search-container" ng-show="userSignedIn">
+      <form ng-submit="getVideos()" class="search-container" ng-show="user.id">
         <input class="search-bar" ng-show="searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="{{searchBarError}}" />
         <input class="search-bar" ng-show="!searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="What do you wanna see?" />
        <button class="search-button" id="utube_search" type="submit">

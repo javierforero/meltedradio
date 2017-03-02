@@ -14,9 +14,8 @@ angular.module('meltedRadio')
     '$auth',
     '$location',
     'localStorageService',
-     function ($scope, $rootScope, $auth, $location, localStorageService) {
-
-       $scope.userSignedIn = localStorageService.get('currentUser');
+    '$http',
+     function ($scope, $rootScope, $auth, $location, localStorageService, $http) {
 
        this.pageRedirect = function() {
 
@@ -33,13 +32,29 @@ angular.module('meltedRadio')
        };
 
        $rootScope.$on('auth:logout-success', function(ev) {
-
+         $scope.userSignedIn = null;
          localStorageService.remove('currentUser');
          $location.path('/');
        });
 
        $scope.getVideos = function () {
-         alert($scope.text);
+
+         var myUrl =  'https://www.googleapis.com/youtube/v3/'+
+                      'search?part=snippet'+
+                      '&q=soccer'+
+                      '&key={apikey}'
+
+
+          if($scope.text) {
+            console.log(myUrl);
+          // $http({
+          //   method: 'GET',
+          //   url:
+          //
+          //
+          //
+          // });
+          }
        };
 
    }]);
