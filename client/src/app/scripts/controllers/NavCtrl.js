@@ -39,21 +39,26 @@ angular.module('meltedRadio')
 
        $scope.getVideos = function () {
 
-         var myUrl =  'https://www.googleapis.com/youtube/v3/'+
-                      'search?part=snippet'+
-                      '&q=soccer'+
-                      '&key={apikey}'
+         if($scope.text) {
+            var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
+            var myUrl =  'https://www.googleapis.com/youtube/v3/'+
+                         'search?part=snippet'+
+                         '&type=video'+
+                         '&q='+
+                         searchText+
+                         '&key={api_key}';
 
+          console.log(myUrl);
+           $http({
+             method: 'GET',
+             url: myUrl
 
-          if($scope.text) {
-            console.log(myUrl);
-          // $http({
-          //   method: 'GET',
-          //   url:
-          //
-          //
-          //
-          // });
+           }).then(function(response){
+               console.log(response.data.items);
+
+           },function(error){
+             console.log(error);
+           });
           }
        };
 
