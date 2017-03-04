@@ -20,7 +20,8 @@ angular.module('meltedRadio')
     'Song',
     'ApiSync',
     '$http',
-     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http) {
+    '$sce',
+     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http,$sce) {
 
        $scope.userSignedIn = localStorageService.get('currentUser');
        $scope.currentPlaylist = null;
@@ -49,10 +50,12 @@ angular.module('meltedRadio')
        $scope.setPlaylist = function(playlist) {
            localStorageService.set('currentPlaylist', playlist);
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
+           if($scope.currentPlaylist) {
 
-           Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
-              ApiSync.setSongs(songs);
-           });
+             Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
+                ApiSync.setSongs(songs);
+             });
+         }
        };
 
        $scope.newSong = function() {
@@ -73,6 +76,47 @@ angular.module('meltedRadio')
           }, function(error){
             console.log(error);
           });
+       };
+
+       var setSearchResults = function(obj) {
+         $scope.videos = obj;
+       };
+
+       $scope.getVideos = function () {
+
+         if($scope.text) {
+
+
+            $scope.setPlaylist(null);
+            var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
+            var myUrl =  'https://www.googleapis.com/youtube/v3/'+
+                         'search?part=snippet'+
+                         '&type=video'+
+                         '&q='+
+                         searchText+
+                         '&key='+
+                         YOUTUBE_API_KEY;
+           $http({
+             method: 'GET',
+             url: myUrl
+
+           }).then(function(response){
+
+             console.log(response.data.items);
+             setSearchResults(response.data.items);
+
+           },function(error){
+             console.log(error);
+           });
+          }
+       };
+
+       $scope.getUrl = function(video) {
+         return "//www.youtube.com/embed/"+video.id.videoId;
+       };
+
+       $scope.trustSrc = function(src) {
+         return $sce.trustAsResourceUrl(src);
        };
 
 

@@ -1,0 +1,4 @@
+<h1>search results</h1>
+<div class="vide-search-results">
+  <iframe ng-repeat="video in videos" width="640" height="360" ng-src="{{trustSrc(getUrl(video))}}"></iframe>
+</div>

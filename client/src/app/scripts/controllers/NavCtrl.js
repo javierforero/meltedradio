@@ -36,30 +36,5 @@ angular.module('meltedRadio')
          localStorageService.remove('currentUser');
          $location.path('/');
        });
-
-       $scope.getVideos = function () {
-
-         if($scope.text) {
-            var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
-            var myUrl =  'https://www.googleapis.com/youtube/v3/'+
-                         'search?part=snippet'+
-                         '&type=video'+
-                         '&q='+
-                         searchText+
-                         '&key={api_key}';
-
-          console.log(myUrl);
-           $http({
-             method: 'GET',
-             url: myUrl
-
-           }).then(function(response){
-               console.log(response.data.items);
-
-           },function(error){
-             console.log(error);
-           });
-          }
-       };
-
+       
    }]);
