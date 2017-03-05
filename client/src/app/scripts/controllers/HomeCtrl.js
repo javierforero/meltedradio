@@ -102,7 +102,6 @@ angular.module('meltedRadio')
 
            }).then(function(response){
 
-             console.log(response.data.items);
              setSearchResults(response.data.items);
 
            },function(error){
@@ -112,7 +111,7 @@ angular.module('meltedRadio')
        };
 
        $scope.getUrl = function(video) {
-         return "//www.youtube.com/embed/"+video.id.videoId;
+         return "//www.youtube.com/embed/"+video.id.videoId+"?controls=2";
        };
 
        $scope.trustSrc = function(src) {
