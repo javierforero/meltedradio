@@ -21,7 +21,8 @@ angular.module('meltedRadio')
     'ApiSync',
     '$http',
     '$sce',
-     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http,$sce) {
+    '$window',
+     function ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http,$sce, $window) {
 
        $scope.userSignedIn = localStorageService.get('currentUser');
        $scope.currentPlaylist = null;
@@ -95,7 +96,7 @@ angular.module('meltedRadio')
                          '&q='+
                          searchText+
                          '&key='+
-                         YOUTUBE_API_KEY;
+                         $window.__env.apiKey;
            $http({
              method: 'GET',
              url: myUrl
