@@ -218,3 +218,18 @@ form.search-container {
     outline: none;
   }
 }
+
+div.video-search-results {
+  width: 640px;
+  margin: 0 auto;
+
+  div.search-vid-controls {
+    width: 100%;
+    background-color: purple;
+
+    i {
+      font-size: 3rem;
+      color: white;
+    }
+  }
+}

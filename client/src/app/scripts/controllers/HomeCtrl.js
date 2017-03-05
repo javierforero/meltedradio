@@ -119,5 +119,9 @@ angular.module('meltedRadio')
          return $sce.trustAsResourceUrl(src);
        };
 
+       $scope.openMenu = function() {
+
+       };
+
 
     }]);

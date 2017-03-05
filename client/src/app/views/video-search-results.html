@@ -1,4 +1,7 @@
-<h1>search results</h1>
-<div class="vide-search-results">
-  <iframe ng-repeat="video in videos" width="640" height="360" ng-src="{{trustSrc(getUrl(video))}}" frameborder='0' allowfullscreen></iframe>
+<div class="video-search-results" ng-repeat="video in videos">
+  <div class="search-vid-controls">
+    <i class="fa fa-plus" id="add-song" ng-click="openMenu()" aria-hidden="true"></i>
+  </div>
+  <iframe width="640" height="360" ng-src="{{trustSrc(getUrl(video))}}" frameborder='0' allowfullscreen>
+  </iframe>
 </div>
