@@ -59,11 +59,26 @@ angular.module('meltedRadio')
          }
        };
 
-       $scope.newSong = function() {
-         $uibModal.open({
-           templateUrl: '/app/views/addsong.html',
-           controller: 'AddSongCtrl as song'
-         });
+       $scope.addSong = function(playlist, video) {
+
+         $('ul#'+video.id.videoId).toggle("slow");
+
+         $http({
+           method: 'POST',
+           url: 'http://localhost:3000/playlists/' + playlist.id +'/songs',
+           data: {
+             title: video.snippet.title,
+             artist: video.snippet.description,
+             url: video.id.videoId
+           }
+         }).then(
+           function(results){
+             ApiSync.setSongs(results.data);
+            },
+            function(error){
+              console.log(error);
+          });
+
        };
 
        $scope.deleteSong = function(song) {
@@ -102,7 +117,7 @@ angular.module('meltedRadio')
              url: myUrl
 
            }).then(function(response){
-
+             
              setSearchResults(response.data.items);
 
            },function(error){
@@ -119,8 +134,8 @@ angular.module('meltedRadio')
          return $sce.trustAsResourceUrl(src);
        };
 
-       $scope.openMenu = function() {
-
+       $scope.toggleMenu = function(videoId) {
+         $('ul#'+videoId).toggle("slow");
        };
 
 

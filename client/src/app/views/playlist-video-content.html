@@ -3,7 +3,6 @@
   </div>
   <div>
     <h1>{{currentPlaylist.title}}</h1>
-    <a class="button" ng-click="newSong()"> + New Song</a>
   </div>
   <div>
     <table class="songs-table">
@@ -17,7 +16,7 @@
         <tr ng-repeat="song in songs()">
           <td>{{song.title}}</td>
           <td>{{song.artist}}</td>
-          <td><a href="{{song.url}}" target="_blank">link</a></td>
+          <td>{{song.url}}</td>
           <td><i ng-click="deleteSong(song)"class="fa fa-trash-o" aria-hidden="true"></i></td>
         </tr>
     </table>

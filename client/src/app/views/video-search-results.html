@@ -1,6 +1,11 @@
 <div class="video-search-results" ng-repeat="video in videos">
   <div class="search-vid-controls">
-    <i class="fa fa-plus" id="add-song" ng-click="openMenu()" aria-hidden="true"></i>
+    <i class="fa fa-plus" id="add-song" ng-click="toggleMenu(video.id.videoId)" aria-hidden="true"></i>
+      <ul class="add-song-menu" id="{{video.id.videoId}}">
+        <li ng-repeat="playlist in playlists()">
+          <small ng-click="addSong(playlist, video)">{{playlist.title}}</small>
+        </li>
+      </ul>
   </div>
   <iframe width="640" height="360" ng-src="{{trustSrc(getUrl(video))}}" frameborder='0' allowfullscreen>
   </iframe>
