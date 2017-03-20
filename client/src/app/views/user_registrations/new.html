@@ -1,21 +1,29 @@
 <div class="gif-container">
-  <form class="form-container" ng-submit="submitRegistration(registrationForm)" role="form" ng-init="registrationForm = {}">
-    <div class="form-group">
-      <label class="sr-only">Username</label>
-      <input placeholder="username" name="name" ng-model="registrationForm.name" required="required" autofocus="true">
+  <div class="container">
+    <div class="text-center" id="no-color">
+      <div class="landing-text-block">
+        <p>SIGN UP</p>
+        <small>Please create an account to get started</small>
+        <form class="form-container" ng-submit="submitRegistration(registrationForm)" role="form" ng-init="registrationForm = {}">
+          <div class="form-group">
+            <label class="sr-only">Name</label>
+            <input placeholder="Name" name="name" ng-model="registrationForm.name" required="required" autofocus="true">
+          </div>
+          <div class="form-group">
+            <label class="sr-only">Email Address</label>
+            <input placeholder="Email Address" name="email" type="email" ng-model="registrationForm.email" required="required" autofocus="true">
+          </div>
+          <div class="form-group">
+            <label class="sr-only">Password</label>
+            <input placeholder="Password" name="password" type="password" required="required" ng-model="registrationForm.password" autofocus="true">
+          </div>
+          <div class="form-group">
+            <label class="sr-only">Password Confirmation</label>
+            <input placeholder="Password confirmation" name="password confirmation" type="password" ng-model="registrationForm.passwordConfirmation" required="required" autofocus="true">
+          </div>
+          <div class="form-group"><input class="button" type="submit" value="SIGN UP"></div>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <label class="sr-only">Email</label>
-      <input placeholder="email" name="email" type="email" ng-model="registrationForm.email" required="required" autofocus="true">
-    </div>
-    <div class="form-group">
-      <label class="sr-only">Password</label>
-      <input placeholder="password" name="password" type="password" required="required" ng-model="registrationForm.password" autofocus="true">
-    </div>
-    <div class="form-group">
-      <label class="sr-only">Password Confirmation</label>
-      <input placeholder="password confirmation" name="password confirmation" type="password" ng-model="registrationForm.passwordConfirmation" required="required" autofocus="true">
-    </div>
-    <div class="form-group"><input class="submit" type="submit" value="Sign up"></div>
-  </form>
+  </div>
 </div>

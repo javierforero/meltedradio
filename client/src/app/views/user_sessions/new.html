@@ -1,16 +1,23 @@
 <div class="gif-container">
-  <form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}" class="form-container">
-    <div class="form-group" ng-show="error">
-      {{error}}
+  <div class="container">
+    <div class="text-center" id="no-color">
+      <div class="landing-text-block">
+        <p id="sign-in-form-title">SIGN IN</p>
+        <small class="form-group error" ng-show="error">
+          {{error}}
+        </small>
+        <form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}" class="form-container">
+          <div class="form-group">
+            <label class="sr-only">Email</label>
+            <input type="email" autocomplete="off" name="email" id="email" ng-model="loginForm.email" placeholder="Email" autofocus="true">
+          </div>
+          <div class="form-group">
+            <label class="sr-only">Password</label>
+            <input type="password" name="password" id="password" ng-model="loginForm.password" required="required" placeholder="Password" autofocus="true">
+          </div>
+          <div class="form-group"><input class="button" type="submit" value="SIGN IN"></div>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <label class="sr-only">Email</label>
-      <input type="email" name="email" id="email" ng-model="loginForm.email" placeholder="email" autofocus="true">
-    </div>
-    <div class="form-group">
-      <label class="sr-only">Password</label>
-      <input type="password" name="password" id="password" ng-model="loginForm.password" required="required" placeholder="password" autofocus="true">
-    </div>
-    <div class="form-group"><input class="submit" type="submit" value="Sign in"></div>
-  </form>
+  </div>
 </div>
