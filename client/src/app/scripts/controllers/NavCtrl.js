@@ -17,6 +17,11 @@ angular.module('meltedRadio')
     '$http',
      function ($scope, $rootScope, $auth, $location, localStorageService, $http) {
 
+       var changeNavColor = function() {
+         $('nav.nav-bar').removeClass('black-nav');
+         $('ul.nav-menu a').css('color','black');
+       };
+
        this.pageRedirect = function() {
 
          if($rootScope.user.id) {
@@ -34,7 +39,8 @@ angular.module('meltedRadio')
        $rootScope.$on('auth:logout-success', function(ev) {
          $scope.userSignedIn = null;
          localStorageService.remove('currentUser');
+         changeNavColor(); 
          $location.path('/');
        });
-       
+
    }]);

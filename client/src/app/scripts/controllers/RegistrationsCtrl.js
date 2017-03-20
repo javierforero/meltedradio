@@ -13,7 +13,17 @@ angular.module('meltedRadio')
     '$auth',
     '$rootScope',
     '$location',
-    function($scope, $auth, $rootScope, $location) {
+    'localStorageService',
+    function($scope, $auth, $rootScope, $location, localStorageService) {
+
+      var changeNavColor = function() {
+         $('nav.nav-bar').addClass('black-nav');
+         $('ul.nav-menu a').css('color','white');
+      };
+
+      var setUser = function(obj) {
+         localStorageService.set('currentUser', obj);
+      };
 
       $scope.submitRegistration = function(registrationForm) {
 
@@ -27,8 +37,13 @@ angular.module('meltedRadio')
           });
       };
 
-      $rootScope.$on('auth:registration-email-success', function(ev, message) {
-        $location.path('/home');
+
+      $rootScope.$on('auth:login-success', function(ev, user) {
+
+        setUser(user);
+        changeNavColor();
+        $location.path('/users/'+ user.id);
+
       });
 
 

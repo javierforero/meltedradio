@@ -23,6 +23,11 @@ angular.module('meltedRadio')
           localStorageService.set('currentUser', obj);
        };
 
+       var changeNavColor = function() {
+          $('nav.nav-bar').addClass('black-nav');
+          $('ul.nav-menu a').css('color','white');
+       };
+
       $scope.submitLogin = function(loginForm) {
         $auth.submitLogin(loginForm).then(function(user) {
 
@@ -33,6 +38,7 @@ angular.module('meltedRadio')
       $rootScope.$on('auth:login-success', function(ev, user) {
 
         $location.path('/users/'+ user.id);
+        changeNavColor();
 
       });
       $rootScope.$on('auth:login-error', function(ev, reason) {
