@@ -1,9 +1,9 @@
 class PlaylistsController < ApplicationController
 
   def index
-    user = User.find(params[:user_id])
-    playlists = user.playlists
-    render json: playlists, status: 200
+
+    playlists = Playlist.includes(:user).where("user_id = #{params[:user_id]}")
+    render json: playlists.includes(:user) , status: 200
   end
 
   def create
@@ -12,7 +12,10 @@ class PlaylistsController < ApplicationController
 
     if playlist.save
 
-      render json: user.playlists, status: 200
+      render json: {
+        user: user,
+        new_playlist: playlist
+        }, status: 200
     else
       render json: {error: "wrong/missing inputs, playlist not created", status: 422}, status: 422
     end
