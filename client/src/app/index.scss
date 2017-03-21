@@ -243,26 +243,36 @@ form.form-container {
    margin: 0 auto;
    height: calc(100% - 80px);
  }
+.new-playlist {
 
+  font-family: 'Greycliff-bold';
+  font-size: 20px;
+}
  .playlist-list {
-   padding: 0;
+   font-family: 'Greycliff-bold';
+   padding-left: 30px;
    margin-top: 10px;
  }
 
 .playlist {
-  background-color: #EAE1F3;
   text-align: left;
   padding: 0 40px;
   // min-width: 250px;
   float: left;
   height: 100%;
   width: 20%;
+  border: .8px solid grey;
 }
 
 .playlist-content {
   float: right;
   height: 100%;
   width: 80%;
+}
+
+.playlist-video-info {
+  float: right;
+  width: 35%;
 }
 
 div.video {
@@ -319,10 +329,7 @@ form.search-container {
     color: white;
   }
   :-moz-placeholder { /* Firefox 18- */
-    font-family: 'Greycliff-light' !important;
-    font-size: 15px;
-    font-weight: lighter;
-    letter-spacing: 1.3px;
+    font-family: 'Greycliff-light';
     color: white;
   }
 }

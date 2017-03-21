@@ -1,9 +1,9 @@
 <div class="home-page">
     <div class="playlist">
       <h3>Your Music</h3>
-      <a class="button" ng-click="newPlaylist()"> + New Playlist</a>
-      <ul class="playlist-list" ng-repeat="playlist in playlists()">
-        <li>
+      <a class="new-playlist" ng-click="newPlaylist()"> + New Playlist</a>
+      <ul class="playlist-list">
+        <li ng-repeat="playlist in playlists()">
           <h4 ng-click="setPlaylist(playlist)">{{playlist.title}}</h4>
         </li>
       </ul>
