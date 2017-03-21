@@ -28,6 +28,12 @@ angular.module('meltedRadio')
        $scope.currentPlaylist = null;
        $scope.songs = null;
 
+       (function changeNavColor(){
+         $('nav.nav-bar').css('color','white');
+         $('nav.nav-bar').css('background-color','black');
+         $('ul.nav-menu a').css('color','white');
+       })();
+
        User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
          ApiSync.setPlaylists(results);
        });
@@ -117,7 +123,7 @@ angular.module('meltedRadio')
              url: myUrl
 
            }).then(function(response){
-             
+
              setSearchResults(response.data.items);
 
            },function(error){

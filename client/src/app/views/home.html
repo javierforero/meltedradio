@@ -12,9 +12,6 @@
       <form ng-submit="getVideos()" class="search-container" ng-show="user.id">
         <input class="search-bar" ng-show="searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="{{searchBarError}}" />
         <input class="search-bar" ng-show="!searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="What do you wanna see?" />
-        <button class="search-button" id="utube_search" type="submit">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
       </form>
       <ng-include src="'/app/views/playlist-video-content.html'" ng-show="currentPlaylist"></ng-include>
       <ng-include src="'/app/views/video-search-results.html'" ng-show="!currentPlaylist"></ng-include>

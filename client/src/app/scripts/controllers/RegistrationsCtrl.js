@@ -16,11 +16,6 @@ angular.module('meltedRadio')
     'localStorageService',
     function($scope, $auth, $rootScope, $location, localStorageService) {
 
-      var changeNavColor = function() {
-         $('nav.nav-bar').addClass('black-nav');
-         $('ul.nav-menu a').css('color','white');
-      };
-
       var setUser = function(obj) {
          localStorageService.set('currentUser', obj);
       };
@@ -41,7 +36,6 @@ angular.module('meltedRadio')
       $rootScope.$on('auth:login-success', function(ev, user) {
 
         setUser(user);
-        changeNavColor();
         $location.path('/users/'+ user.id);
 
       });

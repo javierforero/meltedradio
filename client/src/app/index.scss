@@ -115,11 +115,11 @@ nav.nav-bar {
     letter-spacing: 1.5px;
     float: right;
     margin-top: 10px;
-    margin-right: 70px;
+    margin-right: 20px;
     li {
-      width: 33.33%;
       float: left;
       font-size: 15px;
+      padding: 10px;
       a {
         text-decoration: underline;
         color: black;
@@ -238,11 +238,6 @@ form.form-container {
 
  // home-page dashboard
 
-.black-nav {
-  color: white;
-  background-color: black;
-}
-
  .home-page {
    position: relative;
    margin: 0 auto;
@@ -268,7 +263,6 @@ form.form-container {
   float: right;
   height: 100%;
   width: 80%;
-  overflow-y: scroll;
 }
 
 div.video {
@@ -287,18 +281,49 @@ table.songs-table {
 }
 
 div.logo, form.search-container {
-  width: 33.33%;
+  width: 100%;
 }
 
 form.search-container {
   position: relative;
-  margin-top: 14px;
 
   input {
-    width: 90%;
-    height: 35px;
+    width: 100%;
+    height: 60px;
     padding: 10px;
+    padding-left: 30px;
     outline: none;
+    color: white;
+    border: none;
+    background-color: rgb(111, 42, 254);
+  }
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family: 'Greycliff-light' !important;
+    font-size: 15px;
+    font-weight: lighter;
+    letter-spacing: 1.3px;
+    color: white;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-family: 'Greycliff-light' !important;
+    font-size: 15px;
+    font-weight: lighter;
+    letter-spacing: 1.3px;
+    color: white;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    font-family: 'Greycliff-light' !important;
+    font-size: 15px;
+    font-weight: lighter;
+    letter-spacing: 1.3px;
+    color: white;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    font-family: 'Greycliff-light' !important;
+    font-size: 15px;
+    font-weight: lighter;
+    letter-spacing: 1.3px;
+    color: white;
   }
 }
 
