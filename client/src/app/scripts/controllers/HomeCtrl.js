@@ -35,7 +35,8 @@ angular.module('meltedRadio')
        })();
 
        User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
-         ApiSync.setPlaylists(results);
+         console.log(results);
+        //  ApiSync.setPlaylists(results);
        });
 
 
@@ -55,8 +56,10 @@ angular.module('meltedRadio')
        };
 
        $scope.setPlaylist = function(playlist) {
+
            localStorageService.set('currentPlaylist', playlist);
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
+
            if($scope.currentPlaylist) {
 
              Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
@@ -131,6 +134,7 @@ angular.module('meltedRadio')
            });
           }
        };
+
 
        $scope.getUrl = function(video) {
          return "//www.youtube.com/embed/"+video.id.videoId+"?controls=2";

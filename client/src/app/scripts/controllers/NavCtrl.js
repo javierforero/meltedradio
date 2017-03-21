@@ -18,7 +18,6 @@ angular.module('meltedRadio')
      function ($scope, $rootScope, $auth, $location, localStorageService, $http) {
 
        function changeNavColor(){
-         console.log('yooo');
          $('nav.nav-bar').css('color','black');
          $('nav.nav-bar').css('background-color','white');
          $('ul.nav-menu a').css('color','black');
