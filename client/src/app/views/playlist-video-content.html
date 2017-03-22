@@ -28,7 +28,7 @@
       <tr ng-repeat="song in songs()">
         <td>{{song.title}}</td>
         <td>{{song.artist}}</td>
-        <td>{{song.url}}</td>
+        <td>{{song.user.name}}</td>
         <td><i ng-click="deleteSong(song)"class="fa fa-trash-o" aria-hidden="true"></i></td>
       </tr>
   </table>

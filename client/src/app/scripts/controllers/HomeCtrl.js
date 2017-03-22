@@ -62,6 +62,7 @@ angular.module('meltedRadio')
            if($scope.currentPlaylist) {
 
              Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
+                console.log(songs);
                 ApiSync.setSongs(songs);
              });
          }
@@ -125,7 +126,7 @@ angular.module('meltedRadio')
              url: myUrl
 
            }).then(function(response){
-
+             console.log(response);
              setSearchResults(response.data.items);
 
            },function(error){
