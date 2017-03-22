@@ -285,20 +285,22 @@ div.playlist-video-content {
       height: 100%;
 
       div.playlist-sub-info {
+        height: 38.5%;
+        padding-top: 15px;
         h1 {
           margin: 0;
         }
       }
 
       div.follow {
-
+        height: 23%;
+        padding: 25px;
         width: 100%;
-        height: 50px;
         border: 1px solid black;
         font-family: 'Greycliff-bold';
         letter-spacing: 1.2px;
         font-size: 16px;
-        padding: 12px;
+        padding: 24px;
       }
     }
   }
@@ -313,6 +315,8 @@ div.video {
 
 div.play-bar {
   padding: 10px;
+  height: 38.5%;
+  padding-top: 26px;
   img.back-button, img.next-button {
     width: 8%;
     height: auto;
@@ -333,6 +337,12 @@ table.songs-table {
   width: 100%;
   th {
     text-align: center;
+  }
+  tr {
+    border-bottom: 1px solid grey;
+  }
+  th, td {
+    padding: 10px;
   }
 }
 
