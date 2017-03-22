@@ -35,8 +35,7 @@ angular.module('meltedRadio')
        })();
 
        User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
-         console.log(results);
-        //  ApiSync.setPlaylists(results);
+         ApiSync.setPlaylists(results);
        });
 
 

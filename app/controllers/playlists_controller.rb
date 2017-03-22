@@ -1,9 +1,9 @@
 class PlaylistsController < ApplicationController
 
   def index
-
-    playlists = Playlist.includes(:user).where("user_id = #{params[:user_id]}")
-    render json: playlists.includes(:user) , status: 200
+    user = User.find(params[:user_id])
+    playlists = user.playlists
+    render :json => playlists, :include => {:user => {:only => :name}}, status: 200
   end
 
   def create

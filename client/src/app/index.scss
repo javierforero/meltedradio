@@ -103,7 +103,7 @@ nav.nav-bar {
 
   h1 {
     font-family: 'Greycliff-heavy';
-    margin-top: 10px;
+    margin-top: 22px;
     margin-left: 70px;
     float: left;
     font-size: 30px;
@@ -116,6 +116,7 @@ nav.nav-bar {
     float: right;
     margin-top: 10px;
     margin-right: 20px;
+    min-width: 240px;
     li {
       float: left;
       font-size: 15px;
@@ -270,20 +271,65 @@ form.form-container {
   width: 80%;
 }
 
-.playlist-video-info {
-  float: right;
-  width: 35%;
+div.playlist-video-content {
+  position: relative;
+  height: calc(100% - 60px);
+  min-height: 460px;
+  div.video-and-playbar {
+    height: 60%;
+
+    div.playlist-video-info {
+      position: relative;
+      float: right;
+      width: 35%;
+      height: 100%;
+
+      div.playlist-sub-info {
+        h1 {
+          margin: 0;
+        }
+      }
+
+      div.follow {
+
+        width: 100%;
+        height: 50px;
+        border: 1px solid black;
+        font-family: 'Greycliff-bold';
+        letter-spacing: 1.2px;
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  }
 }
 
 div.video {
   width: 65%;
-  height: 350px;
+  height: 100%;
   float: left;
   background-color: black;
 }
 
+div.play-bar {
+  padding: 10px;
+  img.back-button, img.next-button {
+    width: 8%;
+    height: auto;
+  }
+  img.back-button {
+    margin-right: 10px;
+  }
+  img.next-button {
+    margin-left: 10px;
+  }
+  img.play-button {
+    width: 18%;
+  }
+
+}
+
 table.songs-table {
-  margin-top: 30px;
   width: 100%;
   th {
     text-align: center;

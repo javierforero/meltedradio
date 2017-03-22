@@ -1,25 +1,34 @@
 <div class="playlist-video-content">
-  <div class="video">
+  <div class="video-and-playbar">
+    <div class="video">
+    </div>
+    <div class="playlist-video-info">
+       <div class="playlist-sub-info">
+         <h1>{{currentPlaylist.title}}</h1>
+         <h4>BY {{currentPlaylist.user.name}}</h4>
+         <small> {{songs().length}} song(s) • length</small>
+        </div>
+        <div class="play-bar">
+          <img class="back-button" src="/../assets/images/previous_button.png"/>
+          <img class="play-button" src="/../assets/images/play_button.png"/>
+          <img class="next-button" src="/../assets/images/next_button.png"/>
+        </div>
+        <div class="follow">FOLLOW</div>
+    </div>
   </div>
-  <div class="playlist-video-info">
-      <h1>{{currentPlaylist.title}}</h1>
-      <h3>BY {{currentPlaylist.user_id}}</h3>
-  </div>
-  <div>
-    <table class="songs-table">
-      <thead>
-        <tr>
-          <th>SONG</th>
-          <th>ARTIST</th>
-          <th>URL</th>
-        </tr>
-      </thead>
-        <tr ng-repeat="song in songs()">
-          <td>{{song.title}}</td>
-          <td>{{song.artist}}</td>
-          <td>{{song.url}}</td>
-          <td><i ng-click="deleteSong(song)"class="fa fa-trash-o" aria-hidden="true"></i></td>
-        </tr>
-    </table>
-  </div>
+  <table class="songs-table">
+    <thead>
+      <tr>
+        <th>SONG</th>
+        <th>ARTIST</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+      <tr ng-repeat="song in songs()">
+        <td>{{song.title}}</td>
+        <td>{{song.artist}}</td>
+        <td>{{song.url}}</td>
+        <td><i ng-click="deleteSong(song)"class="fa fa-trash-o" aria-hidden="true"></i></td>
+      </tr>
+  </table>
 </div>
