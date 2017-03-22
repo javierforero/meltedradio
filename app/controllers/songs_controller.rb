@@ -5,7 +5,7 @@ class SongsController < ApplicationController
     playlist = Playlist.find(params[:playlist_id])
     songs = playlist.songs
 
-    render json: songs, status: 200
+    render :json => songs, :include => {:user => {:only => :name}}, status: 200
   end
 
   def create
