@@ -3,7 +3,7 @@
     <i class="fa fa-plus" id="add-song" ng-click="toggleMenu(video.id.videoId)" aria-hidden="true"></i>
       <ul class="add-song-menu" id="{{video.id.videoId}}">
         <li ng-repeat="playlist in playlists()">
-          <small ng-click="addSong(playlist, video)">{{playlist.title}}</small>
+          <small ng-click="getVideoSong(playlist, video)">{{playlist.title}}</small>
         </li>
       </ul>
   </div>

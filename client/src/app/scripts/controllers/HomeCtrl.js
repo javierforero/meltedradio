@@ -62,33 +62,53 @@ angular.module('meltedRadio')
            if($scope.currentPlaylist) {
 
              Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
-                console.log(songs);
                 ApiSync.setSongs(songs);
              });
          }
        };
 
-       $scope.addSong = function(playlist, video) {
+       $scope.getVideoSong = function(playlist, video) {
 
          $('ul#'+video.id.videoId).toggle("slow");
 
-         $http({
-           method: 'POST',
-           url: 'http://localhost:3000/playlists/' + playlist.id +'/songs',
-           data: {
-             title: video.snippet.title,
-             artist: video.snippet.description,
-             url: video.id.videoId
-           }
-         }).then(
-           function(results){
-             ApiSync.setSongs(results.data);
-            },
-            function(error){
-              console.log(error);
-          });
+        var getVideoInfoUrl = 'https://www.googleapis.com/youtube/v3/videos?'+
+                      'id='+
+                      video.id.videoId+
+                      '&key='+
+                      $window.__env.apiKey+
+                      '&part=snippet,contentDetails';
+            $http({
 
+              method: 'GET',
+              url: getVideoInfoUrl
+
+            }).then(function(results){
+              
+              addVideoToPlaylist(playlist,results.data.items[0]);
+
+            },function(error){
+              console.log(error);
+            });
        };
+
+     function addVideoToPlaylist(playlist, video) {
+          $http({
+            method: 'POST',
+            url: 'http://localhost:3000/playlists/' + playlist.id +'/songs',
+            data: {
+              title: video.snippet.title,
+              artist: video.snippet.description,
+              url: video.id,
+              duration: video.contentDetails.duration
+            }
+          }).then(
+            function(results){
+              ApiSync.setSongs(results.data);
+             },
+             function(error){
+               console.log(error);
+           });
+       }
 
        $scope.deleteSong = function(song) {
 
@@ -126,7 +146,7 @@ angular.module('meltedRadio')
              url: myUrl
 
            }).then(function(response){
-             console.log(response);
+
              setSearchResults(response.data.items);
 
            },function(error){
@@ -134,12 +154,6 @@ angular.module('meltedRadio')
            });
           }
        };
-
-      var getVideoInfoUrl = 'https://www.googleapis.com/youtube/v3/videos?'+
-                    'id=videoId'+
-                    '&key='+
-                    $window.__env.apiKey+
-                    '&part=snippet,contentDetails';
 
        $scope.getUrl = function(video) {
          return "//www.youtube.com/embed/"+video.id.videoId+"?controls=2";
