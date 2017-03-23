@@ -275,6 +275,13 @@ div.playlist-video-content {
   position: relative;
   height: calc(100% - 60px);
   min-height: 460px;
+
+  div.no-tracks  {
+    padding-top: 75px;
+    font-family: 'Greycliff-regular';
+    font-size: 25px;
+  }
+
   div.video-and-playbar {
     height: 60%;
 

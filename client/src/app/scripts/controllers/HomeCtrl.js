@@ -135,6 +135,11 @@ angular.module('meltedRadio')
           }
        };
 
+      var getVideoInfoUrl = 'https://www.googleapis.com/youtube/v3/videos?'+
+                    'id=videoId'+
+                    '&key='+
+                    $window.__env.apiKey+
+                    '&part=snippet,contentDetails';
 
        $scope.getUrl = function(video) {
          return "//www.youtube.com/embed/"+video.id.videoId+"?controls=2";

@@ -25,11 +25,14 @@
         <th></th>
       </tr>
     </thead>
-      <tr ng-repeat="song in songs()">
+      <tr ng-repeat="song in songs()" ng-show="songs().length > 0">
         <td>{{song.title}}</td>
         <td>{{song.artist}}</td>
         <td>{{song.user.name}}</td>
         <td><i ng-click="deleteSong(song)"class="fa fa-trash-o" aria-hidden="true"></i></td>
       </tr>
   </table>
+  <div class="no-tracks" ng-show="songs().length === 0">
+    <p>This playlist contains no tracks.</p>
+  </div>
 </div>
