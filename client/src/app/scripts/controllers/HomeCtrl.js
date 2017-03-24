@@ -83,7 +83,7 @@ angular.module('meltedRadio')
               url: getVideoInfoUrl
 
             }).then(function(results){
-              
+
               addVideoToPlaylist(playlist,results.data.items[0]);
 
             },function(error){
@@ -91,7 +91,19 @@ angular.module('meltedRadio')
             });
        };
 
-     function addVideoToPlaylist(playlist, video) {
+       $scope.convertDuration = function(string) {
+
+           var array = string.match(/(\d+)(?=[MHS])/ig)||[];
+           var formatted = array.map(function(item){
+             if(item.length<2) return '0'+item;
+               return item;
+           }).join(':');
+
+           return formatted;
+
+       };
+
+      function addVideoToPlaylist(playlist, video) {
           $http({
             method: 'POST',
             url: 'http://localhost:3000/playlists/' + playlist.id +'/songs',
