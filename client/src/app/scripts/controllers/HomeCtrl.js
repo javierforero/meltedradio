@@ -55,7 +55,7 @@ angular.module('meltedRadio')
        };
 
        $scope.setPlaylist = function(playlist) {
-
+          $('div.playlist-content').removeClass('overflow');
            localStorageService.set('currentPlaylist', playlist);
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
 
@@ -142,7 +142,6 @@ angular.module('meltedRadio')
        $scope.getVideos = function () {
 
          if($scope.text) {
-
 
             $scope.setPlaylist(null);
             var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
