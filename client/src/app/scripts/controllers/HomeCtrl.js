@@ -181,7 +181,7 @@ angular.module('meltedRadio')
        };
 
        $scope.onPlayerReady = function(event) {
-         console.log('I ran play function', event);
+         
          event.target.playVideo();
        };
 
@@ -194,22 +194,32 @@ angular.module('meltedRadio')
          player.stopVideo();
        }
 
-       $scope.play = function(currentSong) {
+       $scope.play = function(song) {
+
            var vidHeight = $('div.video').height();
            var vidWidth = $('div.video').width();
-           var vidPlay = currentSong || $scope.songs()[0]
-           console.log(vidPlay);
-           $scope.currentSong = vidPlay;
+           var vidPlay = song || $scope.songs()[0]
 
-           player = new YT.Player('iframe-utube-player', {
-             height: vidHeight,
-             width:  vidWidth,
-             videoId: vidPlay.url,
-             events: {
-               'onReady': $scope.onPlayerReady,
-               'onStateChange': $scope.onPlayerStateChange
-             }
-           });
+
+
+          if(!$scope.currentSong) {
+
+            player = new YT.Player('iframe-utube-player', {
+              height: vidHeight,
+              width:  vidWidth,
+              videoId: vidPlay.url,
+              events: {
+                'onReady': $scope.onPlayerReady,
+                'onStateChange': $scope.onPlayerStateChange
+              }
+            });
+          } else {
+             player.loadVideoById({
+               'videoId': vidPlay.url
+             });
+          }
+
+          $scope.currentSong = vidPlay;
        };
 
        function getSongIndex(song) {
@@ -221,23 +231,23 @@ angular.module('meltedRadio')
          var songsArray = $scope.songs();
          var lastIndex = songsArray.length - 1;
          var indexOfCurrentSong = songsArray.indexOf($scope.currentSong);
-
+         var songToPlay = null;
 
          if($scope.currentSong) {
            if(indexOfCurrentSong < lastIndex ) {
 
-             $scope.currentSong = songsArray[indexOfCurrentSong + 1];
+             songToPlay  = songsArray[indexOfCurrentSong + 1];
 
             } else {
 
               indexOfCurrentSong = 0;
-              $scope.currentSong = songsArray[indexOfCurrentSong];
+              songToPlay  = songsArray[indexOfCurrentSong];
             }
          } else {
-           $scope.currentSong = songsArray[0];
+           songToPlay  = songsArray[0];
          }
-         console.log($scope.currentSong);
-         $scope.play($scope.currentSong);
+
+         $scope.play(songToPlay);
       };
 
     }]);
