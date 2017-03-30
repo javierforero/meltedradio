@@ -14,7 +14,8 @@ class PlaylistsController < ApplicationController
 
       render json: {
         user: user,
-        new_playlist: playlist
+        new_playlist: playlist, :include => {:user => {:only => :name}},
+        playlists: user.playlists, :include => {:user => {:only => :name}}
         }, status: 200
     else
       render json: {error: "wrong/missing inputs, playlist not created", status: 422}, status: 422

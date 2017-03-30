@@ -181,7 +181,7 @@ angular.module('meltedRadio')
        };
 
        $scope.onPlayerReady = function(event) {
-         
+
          event.target.playVideo();
        };
 
@@ -249,5 +249,29 @@ angular.module('meltedRadio')
 
          $scope.play(songToPlay);
       };
+
+      $scope.previous = function() {
+
+        var songsArray = $scope.songs();
+        var lastIndex = songsArray.length - 1;
+        var indexOfCurrentSong = songsArray.indexOf($scope.currentSong);
+        var songToPlay = null;
+
+        if($scope.currentSong) {
+          if(indexOfCurrentSong > 0 ) {
+
+            songToPlay  = songsArray[indexOfCurrentSong - 1];
+
+           } else {
+
+             indexOfCurrentSong = lastIndex;
+             songToPlay  = songsArray[indexOfCurrentSong];
+           }
+        } else {
+          songToPlay  = songsArray[lastIndex];
+        }
+
+        $scope.play(songToPlay);
+     };
 
     }]);

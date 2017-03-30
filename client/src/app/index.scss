@@ -57,6 +57,10 @@ url('/assets/Webfont/GreycliffCF-Heavy.ttf') format('truetype'); /* Safari, Andr
   }
 }
 
+*:focus {
+  outline: none;
+}
+
 *, *::before, *::after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
