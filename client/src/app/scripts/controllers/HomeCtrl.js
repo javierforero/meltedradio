@@ -36,6 +36,7 @@ angular.module('meltedRadio')
          $('ul.nav-menu a').css('color','white');
        })();
 
+
        User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
          ApiSync.setPlaylists(results);
        });
@@ -50,17 +51,46 @@ angular.module('meltedRadio')
        };
 
        $scope.newPlaylist = function() {
-         $uibModal.open({
+         $scope.modalInstance = $uibModal.open({
            templateUrl: '/app/views/addplaylist.html',
-           controller: 'AddPlaylistCtrl as play'
+           scope: $scope,
+           controller: 'HomeCtrl'
          });
+       };
+
+       $scope.submit = function() {
+         if($scope.text) {
+
+          $http({
+            method: 'POST',
+            url: 'http://localhost:3000/users/' + $scope.userSignedIn.id + '/playlists',
+            data: {
+              title: $scope.text
+            }
+          }).then(function(results){
+
+            console.log(results.data);
+            // ApiSync.setPlaylists(results.data.playlists);
+            // $scope.setPlaylist(results.data.new_playlist);
+
+          }, function(error) {
+            console.log(error);
+          });
+
+           $scope.text = '';
+           $scope.modalInstance.close();
+         }
+       };
+
+       $scope.dismiss = function() {
+         $scope.modalInstance.dismiss('cancel');
        };
 
        $scope.setPlaylist = function(playlist) {
           $('div.playlist-content').removeClass('overflow');
            localStorageService.set('currentPlaylist', playlist);
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
-
+           console.log($scope.currentPlaylist);
            if($scope.currentPlaylist) {
 
              Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
