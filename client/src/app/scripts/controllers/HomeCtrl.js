@@ -69,9 +69,8 @@ angular.module('meltedRadio')
             }
           }).then(function(results){
 
-            console.log(results.data);
-            // ApiSync.setPlaylists(results.data.playlists);
-            // $scope.setPlaylist(results.data.new_playlist);
+            ApiSync.setPlaylists(results.data);
+            $scope.setPlaylist(results.data[results.data.length - 1]);
 
           }, function(error) {
             console.log(error);
@@ -90,10 +89,11 @@ angular.module('meltedRadio')
           $('div.playlist-content').removeClass('overflow');
            localStorageService.set('currentPlaylist', playlist);
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
-           console.log($scope.currentPlaylist);
+            console.log('within setPlaylist');
            if($scope.currentPlaylist) {
-
+               console.log('within query');
              Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
+               console.log('songs: ', songs);
                 ApiSync.setSongs(songs);
              });
          }
