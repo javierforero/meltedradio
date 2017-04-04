@@ -28,6 +28,7 @@ angular.module('meltedRadio')
        $scope.currentPlaylist = null;
        $scope.songs = null;
        $scope.currentSong = null;
+       $scope.isPlaying =  false;
        var player;
 
        (function changeNavColor(){
@@ -243,6 +244,8 @@ angular.module('meltedRadio')
                 'onStateChange': $scope.onPlayerStateChange
               }
             });
+          } else if($scope.currentSong && !song) {
+               player.playVideo();
           } else {
              player.loadVideoById({
                'videoId': vidPlay.url
@@ -250,6 +253,13 @@ angular.module('meltedRadio')
           }
 
           $scope.currentSong = vidPlay;
+          $scope.isPlaying = true;
+       };
+
+       $scope.pause = function() {
+
+          $scope.isPlaying = false;
+          player.pauseVideo();
        };
 
        function getSongIndex(song) {
