@@ -200,7 +200,8 @@ angular.module('meltedRadio')
        };
 
        $scope.getUrl = function(video) {
-         return "//www.youtube.com/embed/"+video.id.videoId+"?controls=2";
+         return "http://www.youtube.com/embed/"+video.id.videoId+"?enablejsapi=1&origin=http://localhost:3001/";
+        //  "//www.youtube.com/embed/"+video.id.videoId+"?controls=2";
        };
 
        $scope.trustSrc = function(src) {
