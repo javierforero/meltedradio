@@ -30,6 +30,7 @@ angular.module('meltedRadio')
        $scope.currentSong = null;
        $scope.isPlaying =  false;
        var player;
+       var player1;
 
        (function changeNavColor(){
          $('nav.nav-bar').css('color','white');
@@ -90,11 +91,11 @@ angular.module('meltedRadio')
           $('div.playlist-content').removeClass('overflow');
            localStorageService.set('currentPlaylist', playlist);
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
-            console.log('within setPlaylist');
+
            if($scope.currentPlaylist) {
-               console.log('within query');
+
              Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
-               console.log('songs: ', songs);
+
                 ApiSync.setSongs(songs);
              });
          }
@@ -170,6 +171,7 @@ angular.module('meltedRadio')
 
        var setSearchResults = function(obj) {
          $scope.videos = obj;
+         createPlayer($scope.videos);
        };
 
        $scope.getVideos = function () {
@@ -212,13 +214,31 @@ angular.module('meltedRadio')
          $('ul#'+videoId).toggle("slow");
        };
 
+
+       function createPlayer(array) {
+            console.log(document.getElementById('vid-1'));
+           for(var i = 0; i < array.length; i++) {
+
+             var id = 'vid-'+(i+1);
+              console.log(id);
+              player1 = new YT.Player('vid-1', {
+                events: {
+                  'onReady': $scope.onPlayerReady,
+                  'onStateChange': $scope.onPlayerStateChange
+                }
+              });
+           }
+
+           console.log(player1);
+       }
+
        $scope.onPlayerReady = function(event) {
 
          event.target.playVideo();
        };
 
        $scope.onPlayerStateChange = function(event) {
-
+           console.log(event);
        };
 
        function stopVideo() {
