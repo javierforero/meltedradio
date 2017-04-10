@@ -171,7 +171,6 @@ angular.module('meltedRadio')
 
        var setSearchResults = function(obj) {
          $scope.videos = obj;
-        //  createPlayer($scope.videos);
        };
 
        $scope.getVideos = function () {
@@ -202,8 +201,7 @@ angular.module('meltedRadio')
        };
 
        $scope.getUrl = function(video) {
-         return "http://www.youtube.com/embed/"+video.id.videoId+"?enablejsapi=1&origin=http://localhost:3001/";
-        //  "//www.youtube.com/embed/"+video.id.videoId+"?controls=2";
+         return "http://www.youtube.com/embed/"+video.id.videoId+"?enablejsapi=1";
        };
 
        $scope.trustSrc = function(src) {
@@ -215,23 +213,24 @@ angular.module('meltedRadio')
        };
 
 
-       $scope.createPlayer = function() {
+       function createPlayer() {
 
           //  for(var i = 0; i < array.length; i++) {
 
             //  var id = 'vid-'+(i+1);
-              console.log(document.getElementById('vid-1'));
+              // console.log('im in create player',document.getElementById('vid-1'));
               player1 = new YT.Player('vid-1', {
                 events: {
-                  'onReady': $scope.onPlayerReady,
                   'onStateChange': $scope.onPlayerStateChange
                 }
               });
           //  }
-
-           console.log(player1);
-       };
-
+          console.log(player1);
+       }
+       $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+          console.log('im in create player',document.getElementById('vid-1'));
+          createPlayer();
+       });
        $scope.onPlayerReady = function(event) {
 
          event.target.playVideo();
