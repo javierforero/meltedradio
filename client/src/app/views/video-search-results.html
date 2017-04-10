@@ -1,4 +1,4 @@
-<div class="video-search-results" ng-repeat="video in videos">
+<div class="video-search-results" ng-repeat="video in videos" ng-init="$last && createPlayer()">
   <div class="search-vid-controls">
     <i class="fa fa-plus" id="add-song" ng-click="toggleMenu(video.id.videoId)" aria-hidden="true"></i>
       <ul class="add-song-menu" id="{{video.id.videoId}}">
