@@ -30,7 +30,7 @@ angular.module('meltedRadio')
        $scope.currentSong = null;
        $scope.isPlaying =  false;
        var player;
-       var player1;
+       var vidArray = [];
 
        (function changeNavColor(){
          $('nav.nav-bar').css('color','white');
@@ -215,20 +215,20 @@ angular.module('meltedRadio')
 
        function createPlayer() {
 
-          //  for(var i = 0; i < array.length; i++) {
+           for(var i = 0; i < $scope.videos.length; i++) {
 
-            //  var id = 'vid-'+(i+1);
-              // console.log('im in create player',document.getElementById('vid-1'));
-              player1 = new YT.Player('vid-1', {
+             var id = 'vid-'+(i+1);
+             var vidPlayerObj = new YT.Player(id, {
                 events: {
                   'onStateChange': $scope.onPlayerStateChange
                 }
               });
-          //  }
-          console.log(player1);
+              vidArray.push(vidPlayerObj);
+           }
+
        }
        $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-          console.log('im in create player',document.getElementById('vid-1'));
+
           createPlayer();
        });
        $scope.onPlayerReady = function(event) {
