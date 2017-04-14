@@ -31,6 +31,7 @@ angular.module('meltedRadio')
        $scope.isPlaying =  false;
        var player;
        var vidArray = [];
+       var searchCurrentSong = null;
 
        (function changeNavColor(){
          $('nav.nav-bar').css('color','white');
@@ -237,8 +238,25 @@ angular.module('meltedRadio')
        };
 
        $scope.onPlayerStateChange = function(event) {
-           console.log('event: ', event);
+
+           if(event.data == YT.PlayerState.PLAYING) {
+             searchVidLogic(event.target);
+           }
+
        };
+
+       function searchVidLogic(video) {
+         if($scope.currentSong && $scope.isPlaying) {
+           $scope.pause();
+         }
+         if(searchCurrentSong) {
+           searchCurrentSong.pauseVideo();
+           searchCurrentSong = video;
+         } else {
+           searchCurrentSong  = video;
+         }
+
+       }
 
        function stopVideo() {
 
@@ -251,17 +269,19 @@ angular.module('meltedRadio')
            var vidWidth = $('div.video').width();
            var vidPlay = song || $scope.songs()[0]
 
+           if(searchCurrentSong) {
+             searchCurrentSong.stopVideo();
+             searchCurrentSong = null;
+           }
 
-
-          if(!$scope.currentSong) {
+           if(!$scope.currentSong) {
 
             player = new YT.Player('iframe-utube-player', {
               height: vidHeight,
               width:  vidWidth,
               videoId: vidPlay.url,
               events: {
-                'onReady': $scope.onPlayerReady,
-                'onStateChange': $scope.onPlayerStateChange
+                'onReady': $scope.onPlayerReady
               }
             });
           } else if($scope.currentSong && !song) {
