@@ -1,0 +1,6 @@
+
+@media only screen and (max-width: 920px) {
+  form.search-container input {
+    background-color: blue;
+  }
+}
