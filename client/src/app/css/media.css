@@ -1,6 +1,13 @@
 
-@media only screen and (max-width: 920px) {
-  form.search-container input {
-    background-color: blue;
+@media only screen and (max-width: 1076px) {
+  div.playlist {
+    padding: 0 18px;
+  }
+}
+
+
+@media only screen and (max-width: 922px) {
+  div.playlist {
+    padding: 0 11px;
   }
 }
