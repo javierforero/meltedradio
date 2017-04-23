@@ -11,3 +11,52 @@
     padding: 0 11px;
   }
 }
+
+@media only screen and (max-width: 848px) {
+  a.new-playlist {
+    font-size: 13px;
+  }
+
+  div.playlist-sub-info h1 {
+    font-size: 24px !important;
+  }
+
+  ul.playlist-list li h4 {
+    font-size: 14px;
+  }
+
+  nav.nav-bar h1 {
+    margin-left: 20px;
+  }
+
+  div.playlist {
+    display: none;
+  }
+
+  div.playlist-content {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 627) {
+  table.song-table {
+    font-size: 11px;
+  }
+}
+
+
+@media only screen and (max-width: 548px) {
+  nav.nav-bar h1 {
+    margin-left: 15px;
+    font-size: 25px;
+  }
+
+  ul.nav-menu {
+    margin-right: 0px;
+  }
+
+  nav.nav-bar ul li {
+    font-size: 14px;
+  }
+
+}

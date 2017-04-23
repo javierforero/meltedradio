@@ -332,6 +332,7 @@ div.play-bar {
   img.back-button, img.next-button {
     width: 8%;
     height: auto;
+    min-width: 20px;
   }
   img.back-button {
     margin-right: 10px;
@@ -341,6 +342,7 @@ div.play-bar {
   }
   img.play-button {
     width: 18%;
+    min-width: 45px;
   }
 
 }
