@@ -30,12 +30,19 @@
       <div class="logo" ng-click="nav.pageRedirect()">
         <h1>MeltedRadio</h1>
       </div>
-      <ul class="nav-menu">
+      <ul id="desktop-nav-menu" class="nav-menu">
         <li ng-show="!user.id"><a ui-sref="sign_in">SIGN IN</a></li>
         <li ng-show="user.id"><a>{{user.name}}</a></li>
         <li>|</li>
         <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>
         <li ng-show="user.id" ng-click="signOut()"><a>SIGN OUT</a></li>
+      </ul>
+      <ul id="mobile-nav-menu" class="nav-menu">
+        <li ng-show="user.id"><a>{{user.name}}</a></li>
+        <li ng-show="user.id" ng-click="signOut()"><a>SIGN OUT</a></li>
+        <li id="playlists-mobile" ng-show="user.id" ng-repeat="playlist in playlists()">
+          <h4>{{playlist.title}}</h4>
+        </li>
       </ul>
     </nav>
     <ui-view></ui-view>

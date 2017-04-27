@@ -89,7 +89,6 @@ angular.module('meltedRadio')
        };
 
        $scope.setPlaylist = function(playlist) {
-         console.log('im in playlist: ', playlist );
          
           $('div.playlist-content').removeClass('overflow');
            localStorageService.set('currentPlaylist', playlist);
