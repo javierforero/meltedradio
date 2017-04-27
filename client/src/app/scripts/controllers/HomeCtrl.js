@@ -88,8 +88,8 @@ angular.module('meltedRadio')
          $scope.modalInstance.dismiss('cancel');
        };
 
-       $scope.setPlaylist = function(playlist) {
-         
+       $rootScope.setPlaylist = function(playlist) {
+
           $('div.playlist-content').removeClass('overflow');
            localStorageService.set('currentPlaylist', playlist);
            $scope.currentPlaylist =  localStorageService.get('currentPlaylist');

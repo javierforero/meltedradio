@@ -39,9 +39,17 @@
 
   ul#mobile-nav-menu {
     display: block;
+    background-color: black;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
   }
 
-  li#playlists-mobile {
+  ul#mobile-nav-menu li a {
+    color: white;
+  }
+
+  li#playlists-mobile, ul#mobile-nav-menu-white {
     display: block;
   }
 
