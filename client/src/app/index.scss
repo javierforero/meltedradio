@@ -445,6 +445,20 @@ div.video-search-results {
   }
 }
 
-ul#mobile-nav-menu, ul#mobile-nav-menu-white {
+ul#mobile-nav-menu-white, ul#mobile-nav-menu-black {
   display: none;
+}
+li.mobile-x {
+  position: relative;
+  height: 50px;
+}
+li.mobile-x img {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 15%;
+  height: auto;
+  max-width: 40px;
+  margin: 0 auto;
+  display: block;
 }

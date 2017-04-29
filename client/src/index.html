@@ -36,15 +36,16 @@
         <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>
         <li ng-show="user.id" ng-click="signOut()"><a>SIGN OUT</a></li>
       </ul>
-      <ul id="mobile-nav-menu" ng-show="user.id" class="nav-menu">
-        <li ng-show="!user.id"><a ui-sref="sign_in">SIGN IN</a></li>
-        <li ng-show="user.id"><a>{{user.name}}</a></li>
-        <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>
-        <li ng-show="user.id" ng-click="signOut()"><a>SIGN OUT</a></li>
-        <li id="playlists-mobile" ng-show="user.id" ng-repeat="playlist in playlists()">
-          <h4 ng-click="setPlaylist(playlist)" >{{playlist.title}}</h4>
-        </li>
-      </ul>
+        <ul id="mobile-nav-menu-black" ng-show="user.id" class="nav-menu">
+          <li class="mobile-x"><img src="assets/images/white_ham.png" align="center" /></li>
+          <li ng-show="!user.id"><a ui-sref="sign_in">SIGN IN</a></li>
+          <li ng-show="user.id"><a>{{user.name}}</a></li>
+          <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>
+          <li ng-show="user.id" ng-click="signOut()"><a>SIGN OUT</a></li>
+          <li id="playlists-mobile" ng-show="user.id" ng-repeat="playlist in playlists()">
+            <h4 ng-click="setPlaylist(playlist)" >{{playlist.title}}</h4>
+          </li>
+        </ul>
       <ul id="mobile-nav-menu-white" ng-show="!user.id" class="nav-menu">
         <li ng-show="!user.id"><a ui-sref="sign_in">SIGN IN</a></li>
         <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>

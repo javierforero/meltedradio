@@ -38,7 +38,6 @@
   }
 
   ul#mobile-nav-menu {
-    display: block;
     background-color: black;
     text-align: center;
     margin: 0;
@@ -49,7 +48,7 @@
     color: white;
   }
 
-  li#playlists-mobile, ul#mobile-nav-menu-white {
+  li#playlists-mobile, ul#mobile-nav-menu-white, ul#mobile-nav-menu-black {
     display: block;
   }
 
@@ -57,6 +56,8 @@
     z-index: 100;
     position: absolute;
     right: 0;
+    padding-left: 0;
+    margin-bottom: 0;
   }
 
   nav.nav-bar ul li {
