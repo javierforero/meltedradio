@@ -448,11 +448,19 @@ div.video-search-results {
 ul#mobile-nav-menu-white, ul#mobile-nav-menu-black {
   display: none;
 }
+ul#mobile-nav-menu-black.nav-menu {
+  background-color: black;
+  margin-right: 0;
+}
+
+div#nav-menu-details-black {
+  display: none;
+}
 li.mobile-x {
   position: relative;
   height: 50px;
 }
-li.mobile-x img {
+li.mobile-x img, li.mobile-ham img {
   position: absolute;
   right: 0;
   left: 0;
@@ -461,4 +469,16 @@ li.mobile-x img {
   max-width: 40px;
   margin: 0 auto;
   display: block;
+}
+
+// li.mobile-x {
+//   display: none;
+// }
+
+.display {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
 }

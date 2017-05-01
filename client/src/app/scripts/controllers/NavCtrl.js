@@ -25,6 +25,8 @@ angular.module('meltedRadio')
          $('ul.nav-menu a').css('color','black');
        }
 
+       $scope.is_open = false;
+
        $scope.playlists = function() {
          return ApiSync.getPlaylists();
        };
@@ -49,5 +51,12 @@ angular.module('meltedRadio')
          changeNavColor();
          $location.path('/');
        });
+
+       $scope.toggleMenu = function(event, x_id) {
+         console.log(event.target.id, "id: ", '#'+ x_id);
+         $scope.is_open = true;
+         $('div#'+ x_id).toggleClass('display');
+
+       };
 
    }]);
