@@ -37,11 +37,12 @@
         <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>
         <li ng-show="user.id" ng-click="signOut()"><a>SIGN OUT</a></li>
       </ul>
-      <div id="mobile-nav-menu-black" ng-show="user.id" class="nav-menu">
-        <a class="mobile-ham" ng-click="toggleMenu($event, 'nav-menu-details-black')">
-          <img id="mobile-ham-black" src="assets/images/white_ham.png" align="center" />
-        </a>
-        <ul id="nav-menu-details-black">
+      <ul id="mobile-nav-menu-black" ng-show="user.id" class="nav-menu">
+        <li class="mobile-ham" ng-click="toggleMenu($event, 'nav-menu-details-black')">
+          <img id="mobile-ham-black" src="assets/images/ham_white.png" align="center" />
+          <img id="mobile-x-black" src="assets/images/x_white.png" align="center" />
+        </li>
+        <!-- <div id="nav-menu-details-black"> -->
           <li ng-show="!user.id"><a ui-sref="sign_in">SIGN IN</a></li>
           <li ng-show="user.id"><a>{{user.name}}</a></li>
           <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>
@@ -49,8 +50,8 @@
           <li id="playlists-mobile" ng-show="user.id" ng-repeat="playlist in playlists()">
             <h4 ng-click="setPlaylist(playlist)" >{{playlist.title}}</h4>
           </li>
-        </ul>
-      </div>
+        <!-- </div> -->
+      </ul>
       <ul id="mobile-nav-menu-white" ng-show="!user.id" class="nav-menu">
         <li ng-show="!user.id"><a ui-sref="sign_in">SIGN IN</a></li>
         <li ng-show="!user.id"><a ui-sref="sign_up">SIGN UP</a></li>

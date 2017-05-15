@@ -67,6 +67,10 @@
   div.playlist-content {
     width: 100%;
   }
+
+  nav.nav-bar img {
+    float: none;
+  }
 }
 
 @media only screen and (max-width: 627) {
