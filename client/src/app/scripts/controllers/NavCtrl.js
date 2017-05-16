@@ -54,7 +54,12 @@ angular.module('meltedRadio')
 
        $scope.toggleMenu = function(event, x_id) {
          console.log(event.target.id, "id: ", '#'+ x_id);
-         $scope.is_open = true;
+         console.log('#'+event.target.id);
+
+         $('#mobile-ham-black').toggleClass('hide');
+         $('#mobile-ham-white').toggleClass('hide');
+         $('#mobile-x-black').toggleClass('display');
+         $('#mobile-x-white').toggleClass('display');
          $('div#'+ x_id).toggleClass('display');
 
        };
