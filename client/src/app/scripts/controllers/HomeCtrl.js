@@ -36,6 +36,8 @@ angular.module('meltedRadio')
        (function changeNavColor(){
          $('nav.nav-bar').css('color','white');
          $('nav.nav-bar').css('background-color','black');
+         $('ul#desktop-nav-menu').css('background-color','black');
+         $('ul#mobile-nav-menu-black').css('background-color','black');
          $('ul.nav-menu a').css('color','white');
        })();
 

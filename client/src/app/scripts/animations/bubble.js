@@ -246,10 +246,13 @@
   };
 
   // main loop
-  var run = function() {
-    requestAnimationFrame(run);
-    ctx.clearRect(0, 0, screen.width, screen.height);
-    lava0.renderMetaballs();
+  var run = function(state) {
+    
+    if(state) {
+      requestAnimationFrame(run);
+      ctx.clearRect(0, 0, screen.width, screen.height);
+      lava0.renderMetaballs();
+    }
   };
   // canvas
   var screen = ge1doot.screen.init("bubble", null, true),
@@ -258,9 +261,10 @@
   // create LavaLamps
   lava0 = new LavaLamp(screen.width, screen.height, 100, "#f512b5", "#5f25b8");
 
-  run();
-
+    run($('#bubble').is(':visible'));
 
 window.addEventListener("resize", function(){
-  lava0 = new LavaLamp(screen.width, screen.height, 100, "#f512b5", "#5f25b8");
+  if($('#bubble').is(':visible')) {
+    lava0 = new LavaLamp(screen.width, screen.height, 100, "#f512b5", "#5f25b8");
+  }
 });
