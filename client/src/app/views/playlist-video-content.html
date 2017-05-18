@@ -21,6 +21,7 @@
   <table class="songs-table">
     <thead>
       <tr>
+        <th></th>
         <th>TITLE</th>
         <th>DURATION</th>
         <th>ADDED BY</th>
@@ -28,6 +29,7 @@
       </tr>
     </thead>
       <tr ng-repeat="song in songs()" ng-show="songs().length > 0">
+        <td id="play-button-table"><img src="/../assets/images/play_button.png" /></td>
         <td>{{song.title}}</td>
         <td>{{convertDuration(song.duration)}}</td>
         <td>{{song.user.name}}</td>
