@@ -28,6 +28,7 @@ angular.module('meltedRadio')
        $scope.currentPlaylist = null;
        $scope.songs = null;
        $scope.currentSong = null;
+       $scope.previousSong = null;
        $scope.isPlaying =  false;
        var player;
        var vidArray = [];
@@ -288,21 +289,30 @@ angular.module('meltedRadio')
               }
             });
           } else if($scope.currentSong && !song) {
+
                player.playVideo();
           } else {
              player.loadVideoById({
                'videoId': vidPlay.url
              });
+
+             $scope.currentSong.playing = null;
           }
 
           $scope.currentSong = vidPlay;
           $scope.isPlaying = true;
+          song.playing = true;
        };
 
-       $scope.pause = function() {
+       $scope.pause = function(song) {
 
           $scope.isPlaying = false;
           player.pauseVideo();
+          if(song){
+            song.playing = null;
+          } else {
+            $scope.currentSong.playing = null;
+          }
        };
 
        function getSongIndex(song) {
