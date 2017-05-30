@@ -1,10 +1,13 @@
 # Melted Radio
 
-This is the source code of Melted Radio app, an app that lets you create playlist from youtube.
-To spin it up make please run
+This is the source code of Melted Radio app, an app that lets you create playlists from Youtube via API.
 
-1. npm install
+The app's backend is ruby API and the frontend is handled by Angular 1.5
+
+To spin it up make please
+
+1. run ```npm install```
 2. cd into client directory
-3. run gulp serve:full-stack
+3. run ```gulp serve:full-stack```
 
 Cheers!
