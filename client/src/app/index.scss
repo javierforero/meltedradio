@@ -202,7 +202,14 @@ div.landing-text-block {
     font-size: 14px;
   }
 }
-
+div.modal-content {
+  background-color: black;
+  color: white;
+  input#submit {
+    background-color: #6F2AFE;
+    border: none;
+  }
+}
 #no-color {
   background-color: transparent;
 }
@@ -421,7 +428,7 @@ div.video-search-results {
 
   div.search-vid-controls {
     width: 100%;
-    background-color: purple;
+    background-color: black;
     position: relative;
 
     i {
@@ -435,7 +442,8 @@ div.video-search-results {
       margin: 0 auto;
       right: 0px;
       left: 0;
-      background-color: purple;
+      background-color: black;
+      color: white;
       z-index: 1;
 
       li {
@@ -493,7 +501,7 @@ ul#mobile-nav-menu-white {
   overflow: hidden;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 80px);
   margin: auto;
 }
 
