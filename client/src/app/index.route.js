@@ -17,10 +17,15 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/views/user_registrations/new.html',
       controller: 'RegistrationsCtrl as signup'
     })
-    .state('home', {
+    .state  ('home', {
       url: '/users/:id',
       templateUrl: 'app/views/home.html',
-      controller: 'HomeCtrl as home'
+      controller: 'HomeCtrl as home',
+      resolve: {
+         auth: function($auth) {
+           return $auth.validateUser();
+         }
+       }
     });
 
   $urlRouterProvider.otherwise('/');
