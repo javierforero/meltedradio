@@ -8,6 +8,7 @@ import { HomeController } from './scripts/controllers/home.controller';
 import { NavController } from './scripts/controllers/nav.controller';
 import { RegistrationsController } from './scripts/controllers/registrations.controller';
 import { SessionsController } from './scripts/controllers/sessions.controller';
+import { BubbleController } from './scripts/controllers/bubble.controller';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
@@ -39,6 +40,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .controller('NavController', NavController)
   .controller('RegistrationsController', RegistrationsController)
   .controller('SessionsController', SessionsController)
+  .controller('BubbleController', BubbleController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective)
   .directive('onFinishRender', function($timeout){
