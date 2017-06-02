@@ -35,7 +35,7 @@ export class HomeController {
 
     $scope.newPlaylist = function() {
       $scope.modalInstance = $uibModal.open({
-        templateUrl: '/app/views/addplaylist.html',
+        templateUrl: 'app/views/addplaylist.html',
         scope: $scope,
         controller: 'HomeController'
       });
