@@ -54,13 +54,21 @@
 
 	var _main = __webpack_require__(4);
 
-	var _githubContributor = __webpack_require__(5);
+	var _home = __webpack_require__(5);
 
-	var _webDevTec = __webpack_require__(6);
+	var _nav = __webpack_require__(6);
 
-	var _navbar = __webpack_require__(7);
+	var _registrations = __webpack_require__(7);
 
-	var _malarkey = __webpack_require__(8);
+	var _sessions = __webpack_require__(8);
+
+	var _githubContributor = __webpack_require__(9);
+
+	var _webDevTec = __webpack_require__(10);
+
+	var _navbar = __webpack_require__(11);
+
+	var _malarkey = __webpack_require__(12);
 
 	/* global malarkey:false, moment:false */
 
@@ -72,7 +80,7 @@
 	  localStorageServiceProvider.setPrefix('meltedRadio');
 	}]).config(["railsSerializerProvider", function (railsSerializerProvider) {
 	  railsSerializerProvider.underscore(angular.identity).camelize(angular.identity);
-	}]).run(_index3.runBlock).service('githubContributor', _githubContributor.GithubContributorService).service('webDevTec', _webDevTec.WebDevTecService).controller('MainController', _main.MainController).directive('acmeNavbar', _navbar.NavbarDirective).directive('acmeMalarkey', _malarkey.MalarkeyDirective).directive('onFinishRender', ["$timeout", function ($timeout) {
+	}]).run(_index3.runBlock).service('githubContributor', _githubContributor.GithubContributorService).service('webDevTec', _webDevTec.WebDevTecService).controller('MainController', _main.MainController).controller('HomeController', _home.HomeController).controller('NavController', _nav.NavController).controller('RegistrationsController', _registrations.RegistrationsController).controller('SessionsController', _sessions.SessionsController).directive('acmeNavbar', _navbar.NavbarDirective).directive('acmeMalarkey', _malarkey.MalarkeyDirective).directive('onFinishRender', ["$timeout", function ($timeout) {
 	  return {
 	    restrict: 'A',
 	    link: function link(scope, element, attr) {
@@ -167,15 +175,15 @@
 	  }).state('sign_in', {
 	    url: '/sign_in',
 	    templateUrl: 'app/views/user_sessions/new.html',
-	    controller: 'SessionsCtrl as signin'
+	    controller: 'SessionsController as signin'
 	  }).state('sign_up', {
 	    url: '/sign_up',
 	    templateUrl: 'app/views/user_registrations/new.html',
-	    controller: 'RegistrationsCtrl as signup'
+	    controller: 'RegistrationsController as signup'
 	  }).state('home', {
 	    url: '/users/:id',
 	    templateUrl: 'app/views/home.html',
-	    controller: 'HomeCtrl as home',
+	    controller: 'HomeController as home',
 	    resolve: {
 	      auth: ["$auth", function auth($auth) {
 	        return $auth.validateUser();
@@ -272,6 +280,493 @@
 	  value: true
 	});
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var HomeController = exports.HomeController = ["$scope", "$rootScope", "$auth", "$location", "User", "Playlist", "localStorageService", "$uibModal", "Song", "ApiSync", "$http", "$sce", "$window", "$log", function HomeController($scope, $rootScope, $auth, $location, User, Playlist, localStorageService, $uibModal, Song, ApiSync, $http, $sce, $window, $log) {
+	  'ngInject';
+
+	  _classCallCheck(this, HomeController);
+
+	  $scope.userSignedIn = localStorageService.get('currentUser');
+	  $scope.currentPlaylist = null;
+	  $scope.songs = null;
+	  $scope.currentSong = null;
+	  $scope.previousSong = null;
+	  $scope.isPlaying = false;
+	  var player;
+	  var vidArray = [];
+	  var searchCurrentSong = null;
+
+	  (function changeNavColor() {
+	    angular.element('nav.nav-bar').css('color', 'white');
+	    angular.element('nav.nav-bar').css('background-color', 'black');
+	    angular.element('ul#desktop-nav-menu').css('background-color', 'black');
+	    angular.element('ul#mobile-nav-menu-black').css('background-color', 'black');
+	    angular.element('ul.nav-menu a').css('color', 'white');
+	  })();
+
+	  User.query({ playlistId: '' }, { userId: $scope.userSignedIn.id }).then(function (results) {
+	    ApiSync.setPlaylists(results);
+	  });
+
+	  $scope.playlists = function () {
+	    return ApiSync.getPlaylists();
+	  };
+
+	  $scope.songs = function () {
+	    return ApiSync.getSongs();
+	  };
+
+	  $scope.newPlaylist = function () {
+	    $scope.modalInstance = $uibModal.open({
+	      templateUrl: '/app/views/addplaylist.html',
+	      scope: $scope,
+	      controller: 'HomeController'
+	    });
+	  };
+
+	  $scope.submit = function () {
+	    if ($scope.text) {
+
+	      $http({
+	        method: 'POST',
+	        url: 'http://localhost:3000/users/' + $scope.userSignedIn.id + '/playlists',
+	        data: {
+	          title: $scope.text
+	        }
+	      }).then(function (results) {
+
+	        ApiSync.setPlaylists(results.data);
+	        $scope.setPlaylist(results.data[results.data.length - 1]);
+	      }, function (error) {
+	        $log(error);
+	      });
+
+	      $scope.text = '';
+	      $scope.modalInstance.close();
+	    }
+	  };
+
+	  $scope.dismiss = function () {
+	    $scope.modalInstance.dismiss('cancel');
+	  };
+
+	  $rootScope.setPlaylist = function (playlist) {
+
+	    angular.element('div.playlist-content').removeClass('overflow');
+	    localStorageService.set('currentPlaylist', playlist);
+	    $scope.currentPlaylist = localStorageService.get('currentPlaylist');
+
+	    if ($scope.currentPlaylist) {
+
+	      Song.query({ songId: '' }, { playlistId: $scope.currentPlaylist.id }).then(function (songs) {
+
+	        ApiSync.setSongs(songs);
+	      });
+	    }
+	  };
+
+	  $scope.getVideoSong = function (playlist, video) {
+
+	    angular.element('ul#' + video.id.videoId).toggle("slow");
+
+	    var getVideoInfoUrl = 'https://www.googleapis.com/youtube/v3/videos?' + 'id=' + video.id.videoId + '&key=' + $window.__env.apiKey + '&part=snippet,contentDetails';
+	    $http({
+
+	      method: 'GET',
+	      url: getVideoInfoUrl
+
+	    }).then(function (results) {
+
+	      addVideoToPlaylist(playlist, results.data.items[0]);
+	    }, function (error) {
+	      $log(error);
+	    });
+	  };
+
+	  $scope.convertDuration = function (string) {
+
+	    var array = string.match(/(\d+)(?=[MHS])/ig) || [];
+	    var formatted = array.map(function (item) {
+	      if (item.length < 2) return '0' + item;
+	      return item;
+	    }).join(':');
+
+	    return formatted;
+	  };
+
+	  function addVideoToPlaylist(playlist, video) {
+	    $http({
+	      method: 'POST',
+	      url: 'http://localhost:3000/playlists/' + playlist.id + '/songs',
+	      data: {
+	        title: video.snippet.title,
+	        artist: video.snippet.description,
+	        url: video.id,
+	        duration: video.contentDetails.duration
+	      }
+	    }).then(function (results) {
+	      ApiSync.setSongs(results.data);
+	    }, function (error) {
+	      $log(error);
+	    });
+	  }
+
+	  $scope.deleteSong = function (song) {
+
+	    $http({
+	      method: 'DELETE',
+	      url: 'http://localhost:3000/playlists/' + $scope.currentPlaylist.id + '/songs/' + song.id
+	    }).then(function (response) {
+
+	      $scope.setPlaylist(response.data.current_playlist);
+	    }, function (error) {
+	      $log(error);
+	    });
+	  };
+
+	  var setSearchResults = function setSearchResults(obj) {
+	    $scope.videos = obj;
+	  };
+
+	  $scope.getVideos = function () {
+
+	    if ($scope.text) {
+
+	      $scope.setPlaylist(null);
+	      var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
+	      var myUrl = 'https://www.googleapis.com/youtube/v3/' + 'search?part=snippet' + '&type=video' + '&q=' + searchText + '&key=' + $window.__env.apiKey;
+	      $http({
+	        method: 'GET',
+	        url: myUrl
+
+	      }).then(function (response) {
+
+	        setSearchResults(response.data.items);
+	      }, function (error) {
+	        $log(error);
+	      });
+	    }
+	  };
+
+	  $scope.getUrl = function (video) {
+	    return "http://www.youtube.com/embed/" + video.id.videoId + "?enablejsapi=1";
+	  };
+
+	  $scope.trustSrc = function (src) {
+	    return $sce.trustAsResourceUrl(src);
+	  };
+
+	  $scope.toggleMenu = function (videoId) {
+	    angular.element('ul#' + videoId).toggle("slow");
+	  };
+
+	  function createPlayer() {
+
+	    for (var i = 0; i < $scope.videos.length; i++) {
+
+	      var id = 'vid-' + (i + 1);
+	      var vidPlayerObj = new YT.Player(id, {
+	        events: {
+	          'onStateChange': $scope.onPlayerStateChange
+	        }
+	      });
+	      vidArray.push(vidPlayerObj);
+	    }
+	  }
+	  $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+
+	    createPlayer();
+	  });
+
+	  $scope.onPlayerReady = function (event) {
+
+	    event.target.playVideo();
+	  };
+
+	  $scope.onPlayerStateChange = function (event) {
+
+	    if (event.data == YT.PlayerState.PLAYING) {
+	      searchVidLogic(event.target);
+	    }
+	  };
+
+	  function searchVidLogic(video) {
+	    if ($scope.currentSong && $scope.isPlaying) {
+	      $scope.pause();
+	    }
+	    if (searchCurrentSong) {
+	      searchCurrentSong.pauseVideo();
+	      searchCurrentSong = video;
+	    } else {
+	      searchCurrentSong = video;
+	    }
+	  }
+
+	  function stopVideo() {
+
+	    player.stopVideo();
+	  }
+
+	  $scope.play = function (song) {
+
+	    var vidHeight = angular.element('div.video').height();
+	    var vidWidth = angular.element('div.video').width();
+	    var vidPlay = song || $scope.songs()[0];
+
+	    if (searchCurrentSong) {
+	      searchCurrentSong.stopVideo();
+	      searchCurrentSong = null;
+	    }
+
+	    if (!$scope.currentSong) {
+
+	      player = new YT.Player('iframe-utube-player', {
+	        height: vidHeight,
+	        width: vidWidth,
+	        videoId: vidPlay.url,
+	        events: {
+	          'onReady': $scope.onPlayerReady
+	        }
+	      });
+	    } else if ($scope.currentSong && !song) {
+
+	      player.playVideo();
+	    } else {
+	      player.loadVideoById({
+	        'videoId': vidPlay.url
+	      });
+
+	      $scope.currentSong.playing = null;
+	    }
+
+	    $scope.currentSong = vidPlay;
+	    $scope.isPlaying = true;
+	    song.playing = true;
+	  };
+
+	  $scope.pause = function (song) {
+
+	    $scope.isPlaying = false;
+	    player.pauseVideo();
+	    if (song) {
+	      song.playing = null;
+	    } else {
+	      $scope.currentSong.playing = null;
+	    }
+	  };
+
+	  function getSongIndex(song) {
+	    return songs().indexOf(song);
+	  }
+
+	  $scope.next = function () {
+
+	    var songsArray = $scope.songs();
+	    var lastIndex = songsArray.length - 1;
+	    var indexOfCurrentSong = songsArray.indexOf($scope.currentSong);
+	    var songToPlay = null;
+
+	    if ($scope.currentSong) {
+	      if (indexOfCurrentSong < lastIndex) {
+
+	        songToPlay = songsArray[indexOfCurrentSong + 1];
+	      } else {
+
+	        indexOfCurrentSong = 0;
+	        songToPlay = songsArray[indexOfCurrentSong];
+	      }
+	    } else {
+	      songToPlay = songsArray[0];
+	    }
+
+	    $scope.play(songToPlay);
+	  };
+
+	  $scope.previous = function () {
+
+	    var songsArray = $scope.songs();
+	    var lastIndex = songsArray.length - 1;
+	    var indexOfCurrentSong = songsArray.indexOf($scope.currentSong);
+	    var songToPlay = null;
+
+	    if ($scope.currentSong) {
+	      if (indexOfCurrentSong > 0) {
+
+	        songToPlay = songsArray[indexOfCurrentSong - 1];
+	      } else {
+
+	        indexOfCurrentSong = lastIndex;
+	        songToPlay = songsArray[indexOfCurrentSong];
+	      }
+	    } else {
+	      songToPlay = songsArray[lastIndex];
+	    }
+
+	    $scope.play(songToPlay);
+	  };
+	}];
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NavController = exports.NavController = ["$scope", "$rootScope", "$auth", "$location", "localStorageService", "$http", "ApiSync", function NavController($scope, $rootScope, $auth, $location, localStorageService, $http, ApiSync) {
+	  'ngInject';
+
+	  _classCallCheck(this, NavController);
+
+	  function changeNavColor() {
+	    angular.element('nav.nav-bar').css('color', 'black');
+	    angular.element('nav.nav-bar').css('background-color', 'white');
+	    angular.element('nav.nav-bar ul').css('background-color', 'white');
+	    angular.element('ul.nav-menu a').css('color', 'black');
+	  }
+
+	  $scope.is_open = false;
+
+	  $scope.playlists = function () {
+	    return ApiSync.getPlaylists();
+	  };
+
+	  this.pageRedirect = function () {
+
+	    if ($rootScope.user.id) {
+	      $location.path('/users/' + $rootScope.user.id);
+	    } else {
+	      $location.path('/');
+	    }
+	  };
+
+	  $scope.signOut = function () {
+	    $auth.signOut();
+	  };
+
+	  $rootScope.$on('auth:logout-success', function (ev) {
+	    $scope.userSignedIn = null;
+	    localStorageService.remove('currentUser');
+	    changeNavColor();
+	    $location.path('/');
+	  });
+
+	  $scope.toggleMenu = function (event, x_id) {
+
+	    angular.element('#mobile-ham-black').toggleClass('hide');
+	    angular.element('#mobile-ham-white').toggleClass('hide');
+	    angular.element('#mobile-x-black').toggleClass('display');
+	    angular.element('#mobile-x-white').toggleClass('display');
+	    angular.element('div#' + x_id).toggleClass('display');
+	  };
+	}];
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var RegistrationsController = exports.RegistrationsController = ["$scope", "$auth", "$rootScope", "$location", "localStorageService", function RegistrationsController($scope, $auth, $rootScope, $location, localStorageService) {
+	  'ngInject';
+
+	  _classCallCheck(this, RegistrationsController);
+
+	  var setUser = function setUser(obj) {
+	    localStorageService.set('currentUser', obj);
+	  };
+
+	  $scope.submitRegistration = function (registrationForm) {
+
+	    $auth.submitRegistration(registrationForm).then(function () {
+
+	      $auth.submitLogin({
+	        email: registrationForm.email,
+	        password: registrationForm.password
+	      });
+	    });
+	  };
+
+	  $rootScope.$on('auth:login-success', function (ev, user) {
+
+	    setUser(user);
+	    $location.path('/users/' + user.id);
+	  });
+	}];
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var SessionsController = exports.SessionsController = ["$scope", "$auth", "$rootScope", "$location", "User", "Playlist", "localStorageService", function SessionsController($scope, $auth, $rootScope, $location, User, Playlist, localStorageService) {
+	  'ngInject';
+
+	  _classCallCheck(this, SessionsController);
+
+	  $scope.error = null;
+
+	  var setUser = function setUser(obj) {
+	    localStorageService.set('currentUser', obj);
+	  };
+
+	  $scope.submitLogin = function (loginForm) {
+	    $auth.submitLogin(loginForm).then(function (user) {
+
+	      setUser(user);
+	    });
+	  };
+
+	  $rootScope.$on('auth:login-success', function (ev, user) {
+
+	    $location.path('/users/' + user.id);
+	  });
+	  $rootScope.$on('auth:login-error', function (ev, reason) {
+	    $scope.error = reason.errors[0];
+	  });
+
+	  User.query({ playlistId: '' }, { userId: 1 }).then(function (results) {
+	    $scope.users = results;
+	  });
+
+	  $scope.signOut = function () {
+	    $auth.signOut();
+	  };
+
+	  $rootScope.$on('auth:logout-success', function (ev) {
+	    $location.path('/');
+	  });
+	}];
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -307,7 +802,7 @@
 	}();
 
 /***/ },
-/* 6 */
+/* 10 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -390,7 +885,7 @@
 	}();
 
 /***/ },
-/* 7 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -431,7 +926,7 @@
 	NavbarController.$inject = ["moment"];
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
