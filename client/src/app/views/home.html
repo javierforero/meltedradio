@@ -15,7 +15,60 @@
         <input class="search-bar" ng-show="searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="{{searchBarError}}" />
         <input class="search-bar" ng-show="!searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="What do you wanna see?" />
       </form>
-      <ng-include src="'/app/views/playlist-video-content.html'" ng-show="currentPlaylist"></ng-include>
-      <ng-include src="'/app/views/video-search-results.html'" ng-show="!currentPlaylist"></ng-include>
-    </div>
+      <div class="playlist-video-content" ng-show="currentPlaylist">
+        <div class="video-and-playbar">
+          <div class="video">
+            <div id="iframe-utube-player"></div>
+          </div>
+          <div class="playlist-video-info">
+             <div class="playlist-sub-info">
+               <h1>{{currentPlaylist.title}}</h1>
+               <h4>BY {{currentPlaylist.user.name}}</h4>
+               <small> {{songs().length}} song(s) • length</small>
+              </div>
+              <div class="play-bar">
+                <img class="back-button" src="/../assets/images/previous_button.png" ng-click="previous()"/>
+                <img class="play-button" src="/../assets/images/pause_button.png" ng-show="isPlaying" ng-click="pause()"/>
+                <img class="play-button" src="/../assets/images/play_button.png" ng-show="!isPlaying" ng-click="play()"/>
+                <img class="next-button" src="/../assets/images/next_button.png" ng-click="next()"/>
+              </div>
+              <div class="follow">FOLLOW</div>
+          </div>
+        </div>
+        <table class="songs-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>TITLE</th>
+              <th>DURATION</th>
+              <th>ADDED BY</th>
+              <th></th>
+            </tr>
+          </thead>
+            <tr ng-repeat="song in songs()" ng-show="songs().length > 0">
+              <td id="play-button-table" ng-show="!song.playing"><img src="/../assets/images/play_button.png" ng-click="play(song)"/></td>
+              <td id="play-button-table" ng-show="song.playing"><img src="/../assets/images/pause_button.png" ng-click="pause(song)"/></td>
+              <td>{{song.title}}</td>
+              <td>{{convertDuration(song.duration)}}</td>
+              <td>{{song.user.name}}</td>
+              <td><i ng-click="deleteSong(song)"class="fa fa-trash-o" aria-hidden="true"></i></td>
+            </tr>
+        </table>
+        <div class="no-tracks" ng-show="songs().length === 0">
+          <p>This playlist contains no tracks.</p>
+        </div>
+      </div>
+      <div class="video-search-results" ng-repeat="video in videos" on-finish-render="ngRepeatFinished" ng-show="!currentPlaylist">
+        <div class="search-vid-controls">
+          <i class="fa fa-plus" id="add-song" ng-click="toggleMenu(video.id.videoId)" aria-hidden="true"></i>
+            <ul class="add-song-menu" id="{{video.id.videoId}}">
+              <li ng-repeat="playlist in playlists()">
+                <small ng-click="getVideoSong(playlist, video)">{{playlist.title}}</small>
+              </li>
+            </ul>
+        </div>
+        <iframe enablejsapi="true" width="640" height="360" id="vid-{{videos.indexOf(video)+1}}" ng-src="{{trustSrc(getUrl(video))}}" frameborder='0' allowfullscreen>
+        </iframe>
+      </div>
+   </div>
 </div>
