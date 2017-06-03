@@ -1,5 +1,5 @@
 export class HomeController {
-  constructor ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http,$sce, $window, $log) {
+  constructor ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http,$sce, $window, $log, YouTubeApiKeyService) {
     'ngInject';
     $scope.userSignedIn = localStorageService.get('currentUser');
     $scope.currentPlaylist = null;
@@ -91,7 +91,7 @@ export class HomeController {
                    'id='+
                    video.id.videoId+
                    '&key='+
-                   $window.__env.apiKey+
+                   YouTubeApiKeyService.apiKey()+
                    '&part=snippet,contentDetails';
          $http({
 
@@ -167,7 +167,7 @@ export class HomeController {
                       '&q='+
                       searchText+
                       '&key='+
-                      $window.__env.apiKey;
+                      YouTubeApiKeyService.apiKey();
         $http({
           method: 'GET',
           url: myUrl

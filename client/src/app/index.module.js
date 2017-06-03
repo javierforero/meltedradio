@@ -11,6 +11,7 @@ import { SessionsController } from './scripts/controllers/sessions.controller';
 import { BubbleController } from './scripts/controllers/bubble.controller';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
+import { YouTubeApiKeyService } from '../app/components/apikeys/youTubeApiKey.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
@@ -35,6 +36,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .run(runBlock)
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
+  .service('YouTubeApiKeyService', YouTubeApiKeyService)
   .controller('MainController', MainController)
   .controller('HomeController', HomeController)
   .controller('NavController', NavController)
