@@ -313,6 +313,10 @@
 	    ApiSync.setPlaylists(results);
 	  });
 
+	  $scope.getCurrentPlaylist = function () {
+	    return $scope.currentPlaylist;
+	  };
+
 	  $scope.playlists = function () {
 	    return ApiSync.getPlaylists();
 	  };
@@ -355,7 +359,7 @@
 	    $scope.modalInstance.dismiss('cancel');
 	  };
 
-	  $rootScope.setPlaylist = function (playlist) {
+	  $scope.setPlaylist = function (playlist) {
 
 	    angular.element('div.playlist-content').removeClass('overflow');
 	    localStorageService.set('currentPlaylist', playlist);

@@ -15,7 +15,7 @@
         <input class="search-bar" ng-show="searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="{{searchBarError}}" />
         <input class="search-bar" ng-show="!searchBarError" id="utube_query" type="text" ng-model="text" autocomplete="off" placeholder="What do you wanna see?" />
       </form>
-      <div class="playlist-video-content" ng-show="currentPlaylist">
+      <div class="playlist-video-content" ng-show="getCurrentPlaylist()">
         <div class="video-and-playbar">
           <div class="video">
             <div id="iframe-utube-player"></div>

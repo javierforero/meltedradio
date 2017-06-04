@@ -24,6 +24,9 @@ export class HomeController {
       ApiSync.setPlaylists(results);
     });
 
+    $scope.getCurrentPlaylist = function() {
+      return $scope.currentPlaylist;
+    }
 
     $scope.playlists = function() {
       return ApiSync.getPlaylists();
@@ -54,7 +57,6 @@ export class HomeController {
 
          ApiSync.setPlaylists(results.data);
          $scope.setPlaylist(results.data[results.data.length - 1]);
-
        }, function(error) {
          $log(error);
        });
@@ -68,7 +70,7 @@ export class HomeController {
       $scope.modalInstance.dismiss('cancel');
     };
 
-    $rootScope.setPlaylist = function(playlist) {
+    $scope.setPlaylist = function(playlist) {
 
        angular.element('div.playlist-content').removeClass('overflow');
         localStorageService.set('currentPlaylist', playlist);
