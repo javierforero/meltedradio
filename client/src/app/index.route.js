@@ -10,17 +10,17 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('sign_in', {
       url: '/sign_in',
       templateUrl: 'app/views/user_sessions/new.html',
-      controller: 'SessionsCtrl as signin'
+      controller: 'SessionsController as signin'
     })
     .state('sign_up', {
       url: '/sign_up',
       templateUrl: 'app/views/user_registrations/new.html',
-      controller: 'RegistrationsCtrl as signup'
+      controller: 'RegistrationsController as signup'
     })
     .state  ('home', {
       url: '/users/:id',
       templateUrl: 'app/views/home.html',
-      controller: 'HomeCtrl as home',
+      controller: 'HomeController as home',
       resolve: {
          auth: function($auth) {
            return $auth.validateUser();
