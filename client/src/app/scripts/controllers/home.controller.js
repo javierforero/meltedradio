@@ -22,7 +22,7 @@ export class HomeController {
     })();
 
     if($scope.userSignedIn) {
-      
+
       User.query({playlistId: ''},{userId: $scope.userSignedIn.id}).then(function(results){
         ApiSync.setPlaylists(results);
       });
@@ -189,7 +189,7 @@ export class HomeController {
     };
 
     $scope.getUrl = function(video) {
-      return "http://www.youtube.com/embed/"+video.id.videoId+"?enablejsapi=1";
+      return "https://www.youtube.com/embed/"+video.id.videoId+"?enablejsapi=1";
     };
 
     $scope.trustSrc = function(src) {
