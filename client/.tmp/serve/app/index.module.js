@@ -314,9 +314,12 @@
 	    angular.element('ul.nav-menu a').css('color', 'white');
 	  })();
 
-	  User.query({ playlistId: '' }, { userId: $scope.userSignedIn.id }).then(function (results) {
-	    ApiSync.setPlaylists(results);
-	  });
+	  if ($scope.userSignedIn) {
+
+	    User.query({ playlistId: '' }, { userId: $scope.userSignedIn.id }).then(function (results) {
+	      ApiSync.setPlaylists(results);
+	    });
+	  }
 
 	  $scope.getCurrentPlaylist = function () {
 	    return $scope.currentPlaylist;

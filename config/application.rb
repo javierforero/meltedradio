@@ -28,10 +28,10 @@ module MeltedRadio
     config.api_only = true
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3001','http://localhost:3000','https://meltedradio.herokuapp.com/'
+        origins '*'
         resource '*',
         :headers => :any,
-        :methods => [:get, :post, :delete, :put, :options],
+        :methods => [:get, :post, :delete, :put, :patch, :options, :head],
         :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client']
       end
     end
