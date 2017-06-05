@@ -15,7 +15,8 @@ import { YouTubeApiKeyService } from '../app/components/apikeys/youTubeApiKey.se
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
-
+var devApiUrl = 'http://localhost:3000' ;
+var prodApiUrl = 'https://meltedradio.herokuapp.com'
 
 angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'ng-token-auth', 'rails', 'LocalStorageModule'])
   .constant('malarkey', malarkey)
@@ -24,7 +25,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .config(routerConfig)
   .config(function($authProvider) {
      $authProvider.configure({
-         apiUrl: 'http://localhost:3000'
+         apiUrl: prodApiUrl
      });
    })
    .config(function(localStorageServiceProvider){
@@ -81,19 +82,19 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   })
   .factory('Playlist', function(railsResourceFactory) {
     return railsResourceFactory({
-      url: 'http://localhost:3000/playlists',
+      url: prodApiUrl+'/playlists',
       name: 'playlist'
     });
   })
   .factory('User',function(railsResourceFactory){
     return railsResourceFactory({
-      url: 'http://localhost:3000/users/{{userId}}/playlists',
+      url: prodApiUrl +'/users/{{userId}}/playlists',
       name: 'user'
     });
   })
   .factory('Song', function(railsResourceFactory){
     return railsResourceFactory({
-      url: 'http://localhost:3000/playlists/{{playlistId}}/songs',
+      url: prodApiUrl + '/playlists/{{playlistId}}/songs',
       name: 'song'
     });
   });

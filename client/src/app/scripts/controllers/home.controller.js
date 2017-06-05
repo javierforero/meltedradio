@@ -10,6 +10,8 @@ export class HomeController {
     var player;
     var vidArray = [];
     var searchCurrentSong = null;
+    var prodApiUrl = 'https://meltedradio.herokuapp.com/';
+    var devApiUrl = 'http://localhost:3000/';
 
     (function changeNavColor(){
       angular.element('nav.nav-bar').css('color','white');
@@ -49,7 +51,7 @@ export class HomeController {
 
        $http({
          method: 'POST',
-         url: 'http://localhost:3000/users/' + $scope.userSignedIn.id + '/playlists',
+         url:  prodApiUrl +'users/' + $scope.userSignedIn.id + '/playlists',
          data: {
            title: $scope.text
          }
@@ -124,7 +126,7 @@ export class HomeController {
    function addVideoToPlaylist(playlist, video) {
        $http({
          method: 'POST',
-         url: 'http://localhost:3000/playlists/' + playlist.id +'/songs',
+         url: prodApiUrl + 'playlists/' + playlist.id +'/songs',
          data: {
            title: video.snippet.title,
            artist: video.snippet.description,
@@ -144,7 +146,7 @@ export class HomeController {
 
        $http({
          method: 'DELETE',
-         url: 'http://localhost:3000/playlists/' + $scope.currentPlaylist.id +'/songs/'+ song.id
+         url: prodApiUrl + 'playlists/' + $scope.currentPlaylist.id +'/songs/'+ song.id
        }).then(function(response){
 
          $scope.setPlaylist(response.data.current_playlist);
@@ -230,14 +232,19 @@ export class HomeController {
     };
 
     function searchVidLogic(video) {
+
       if($scope.currentSong && $scope.isPlaying) {
         $scope.pause();
       }
-      if(searchCurrentSong) {
+
+      if(searchCurrentSong && (searchCurrentSong !== video)) {
         searchCurrentSong.pauseVideo();
         searchCurrentSong = video;
+      } else if(searchCurrentSong && (searchCurrentSong == video)) {
+        searchCurrentSong.playVideo();
       } else {
-        searchCurrentSong  = video;
+        searchCurrentSong = video;
+        searchCurrentSong.playVideo();
       }
 
     }
