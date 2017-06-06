@@ -93,7 +93,7 @@ export class HomeController {
 
       angular.element('ul#'+video.id.videoId).toggle("slow");
 
-     var getVideoInfoUrl = 'https://www.googleapis.com/youtube/v3/videos?'+
+     var getVideoInfoUrl = '//www.googleapis.com/youtube/v3/videos?'+
                    'id='+
                    video.id.videoId+
                    '&key='+
@@ -167,7 +167,7 @@ export class HomeController {
 
          $scope.setPlaylist(null);
          var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
-         var myUrl =  'https://www.googleapis.com/youtube/v3/'+
+         var myUrl =  '//www.googleapis.com/youtube/v3/'+
                       'search?part=snippet'+
                       '&type=video'+
                       '&q='+
@@ -189,7 +189,7 @@ export class HomeController {
     };
 
     $scope.getUrl = function(video) {
-      return "https://www.youtube.com/embed/"+video.id.videoId+"?enablejsapi=1";
+      return "//www.youtube.com/embed/"+video.id.videoId+"?enablejsapi=1";
     };
 
     $scope.trustSrc = function(src) {

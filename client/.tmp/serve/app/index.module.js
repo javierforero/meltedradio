@@ -386,7 +386,7 @@
 
 	    angular.element('ul#' + video.id.videoId).toggle("slow");
 
-	    var getVideoInfoUrl = 'https://www.googleapis.com/youtube/v3/videos?' + 'id=' + video.id.videoId + '&key=' + YouTubeApiKeyService.apiKey() + '&part=snippet,contentDetails';
+	    var getVideoInfoUrl = '//www.googleapis.com/youtube/v3/videos?' + 'id=' + video.id.videoId + '&key=' + YouTubeApiKeyService.apiKey() + '&part=snippet,contentDetails';
 	    $http({
 
 	      method: 'GET',
@@ -451,7 +451,7 @@
 
 	      $scope.setPlaylist(null);
 	      var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
-	      var myUrl = 'https://www.googleapis.com/youtube/v3/' + 'search?part=snippet' + '&type=video' + '&q=' + searchText + '&key=' + YouTubeApiKeyService.apiKey();
+	      var myUrl = '//www.googleapis.com/youtube/v3/' + 'search?part=snippet' + '&type=video' + '&q=' + searchText + '&key=' + YouTubeApiKeyService.apiKey();
 	      $http({
 	        method: 'GET',
 	        url: myUrl
@@ -466,7 +466,7 @@
 	  };
 
 	  $scope.getUrl = function (video) {
-	    return "http://www.youtube.com/embed/" + video.id.videoId + "?enablejsapi=1";
+	    return "//www.youtube.com/embed/" + video.id.videoId + "?enablejsapi=1";
 	  };
 
 	  $scope.trustSrc = function (src) {
