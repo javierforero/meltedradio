@@ -25,7 +25,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .config(routerConfig)
   .config(function($authProvider) {
      $authProvider.configure({
-         apiUrl: prodApiUrl
+         apiUrl: devApiUrl
      });
    })
    .config(function(localStorageServiceProvider){
@@ -82,19 +82,19 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   })
   .factory('Playlist', function(railsResourceFactory) {
     return railsResourceFactory({
-      url: prodApiUrl+'/playlists',
+      url: devApiUrl+'/playlists',
       name: 'playlist'
     });
   })
   .factory('User',function(railsResourceFactory){
     return railsResourceFactory({
-      url: prodApiUrl +'/users/{{userId}}/playlists',
+      url: devApiUrl +'/users/{{userId}}/playlists',
       name: 'user'
     });
   })
   .factory('Song', function(railsResourceFactory){
     return railsResourceFactory({
-      url: prodApiUrl + '/playlists/{{playlistId}}/songs',
+      url: devApiUrl + '/playlists/{{playlistId}}/songs',
       name: 'song'
     });
   });

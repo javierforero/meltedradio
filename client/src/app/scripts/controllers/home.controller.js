@@ -53,7 +53,7 @@ export class HomeController {
 
        $http({
          method: 'POST',
-         url:  prodApiUrl +'users/' + $scope.userSignedIn.id + '/playlists',
+         url:  devApiUrl +'users/' + $scope.userSignedIn.id + '/playlists',
          data: {
            title: $scope.text
          }
@@ -128,7 +128,7 @@ export class HomeController {
    function addVideoToPlaylist(playlist, video) {
        $http({
          method: 'POST',
-         url: prodApiUrl + 'playlists/' + playlist.id +'/songs',
+         url: devApiUrl + 'playlists/' + playlist.id +'/songs',
          data: {
            title: video.snippet.title,
            artist: video.snippet.description,
@@ -148,7 +148,7 @@ export class HomeController {
 
        $http({
          method: 'DELETE',
-         url: prodApiUrl + 'playlists/' + $scope.currentPlaylist.id +'/songs/'+ song.id
+         url: devApiUrl + 'playlists/' + $scope.currentPlaylist.id +'/songs/'+ song.id
        }).then(function(response){
 
          $scope.setPlaylist(response.data.current_playlist);
@@ -167,13 +167,14 @@ export class HomeController {
 
          $scope.setPlaylist(null);
          var searchText = encodeURIComponent($scope.text).replace(/%20/g, '+');
-         var myUrl =  '//www.googleapis.com/youtube/v3/'+
+         var myUrl =  'https://www.googleapis.com/youtube/v3/'+
                       'search?part=snippet'+
                       '&type=video'+
                       '&q='+
                       searchText+
                       '&key='+
                       YouTubeApiKeyService.apiKey();
+        console.log(myUrl);
         $http({
           method: 'GET',
           url: myUrl
@@ -183,7 +184,7 @@ export class HomeController {
           setSearchResults(response.data.items);
 
         },function(error){
-          $log(error);
+          console.log(error);
         });
        }
     };
