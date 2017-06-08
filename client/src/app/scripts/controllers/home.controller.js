@@ -93,7 +93,7 @@ export class HomeController {
 
       angular.element('ul#'+video.id.videoId).toggle("slow");
 
-     var getVideoInfoUrl = '//www.googleapis.com/youtube/v3/videos?'+
+     var getVideoInfoUrl = 'https://www.googleapis.com/youtube/v3/videos?'+
                    'id='+
                    video.id.videoId+
                    '&key='+
@@ -126,6 +126,7 @@ export class HomeController {
     };
 
    function addVideoToPlaylist(playlist, video) {
+
        $http({
          method: 'POST',
          url: devApiUrl + 'playlists/' + playlist.id +'/songs',
@@ -261,13 +262,17 @@ export class HomeController {
 
         var vidHeight = angular.element('div.video').height();
         var vidWidth = angular.element('div.video').width();
-        var vidPlay = song || $scope.songs()[0]
+        var initialSong = $scope.currentSong || $scope.songs()[0];
+        var vidPlay = song || initialSong;
+
+
+        // stops player playing in search results when playing another song in playlist
 
         if(searchCurrentSong) {
           searchCurrentSong.stopVideo();
           searchCurrentSong = null;
         }
-
+       // if there's no currentSong create youtube player
         if(!$scope.currentSong) {
 
          player = new YT.Player('iframe-utube-player', {
@@ -291,7 +296,11 @@ export class HomeController {
 
        $scope.currentSong = vidPlay;
        $scope.isPlaying = true;
-       song.playing = true;
+       $scope.currentSong.playing = true;
+
+       if(song) {
+         song.playing = true;
+       }
     };
 
     $scope.pause = function(song) {
