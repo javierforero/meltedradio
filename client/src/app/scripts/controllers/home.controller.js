@@ -280,13 +280,14 @@ export class HomeController {
            width:  vidWidth,
            videoId: vidPlay.url,
            events: {
-             'onReady': $scope.onPlayerReady
+             'onReady': $scope.onPlayerReady,
+             'onStateChange': $scope.onPlaylistPlayerChange
            }
          });
-       } else if($scope.currentSong && !song) {
-
+       } else if(song == $scope.currentSong || ($scope.currentSong && !song)) {
             player.playVideo();
        } else {
+
           player.loadVideoById({
             'videoId': vidPlay.url
           });
@@ -301,6 +302,14 @@ export class HomeController {
        if(song) {
          song.playing = true;
        }
+    };
+
+    // on playlist player change
+
+    $scope.onPlaylistPlayerChange = function(event) {
+
+
+
     };
 
     $scope.pause = function(song) {
