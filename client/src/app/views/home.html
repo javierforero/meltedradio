@@ -1,5 +1,6 @@
 <div class="home-page">
     <div class="playlist">
+      <h4 ng-click="setPlaylist(null)"><< Results</h4>
       <h3>Your Music</h3>
       <a class="new-playlist" ng-click="newPlaylist()"> + New Playlist</a>
       <ul class="playlist-list">
@@ -17,6 +18,7 @@
       <div class="playlist-video-content" ng-show="getCurrentPlaylist()">
         <div class="video-and-playbar">
           <div class="video">
+            <div id="empty-div"></div>
             <div id="iframe-utube-player"></div>
           </div>
           <div class="playlist-video-info">

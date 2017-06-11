@@ -6,7 +6,7 @@ export class HomeController {
     $scope.songs = null;
     $scope.currentSong = null;
     $scope.previousSong = null;
-    $scope.isPlaying =  false;
+    $scope.isPlaying = false;
     var player;
     var vidArray = [];
     var searchCurrentSong = null;
@@ -175,7 +175,6 @@ export class HomeController {
                       searchText+
                       '&key='+
                       YouTubeApiKeyService.apiKey();
-        console.log(myUrl);
         $http({
           method: 'GET',
           url: myUrl
@@ -279,9 +278,9 @@ export class HomeController {
            height: vidHeight,
            width:  vidWidth,
            videoId: vidPlay.url,
+           playerVars: {'controls': 0, 'rel': 0},
            events: {
-             'onReady': $scope.onPlayerReady,
-             'onStateChange': $scope.onPlaylistPlayerChange
+             'onReady': $scope.onPlayerReady
            }
          });
        } else if(song == $scope.currentSong || ($scope.currentSong && !song)) {
@@ -302,14 +301,6 @@ export class HomeController {
        if(song) {
          song.playing = true;
        }
-    };
-
-    // on playlist player change
-
-    $scope.onPlaylistPlayerChange = function(event) {
-
-
-
     };
 
     $scope.pause = function(song) {
