@@ -114,13 +114,13 @@ nav.nav-bar {
   }
 
   ul {
-    width: 18%;
+    width: auto;
     font-family: 'Greycliff-light';
     letter-spacing: 1.5px;
     float: right;
     margin-top: 10px;
     margin-right: 20px;
-    min-width: 240px;
+    min-width: 140px;
     li {
       float: left;
       font-size: 15px;
@@ -561,6 +561,13 @@ td#play-button-table {
 }
 
 @media only screen and (max-width: 848px) {
+
+  div.playlist-video-info {
+    display: none;
+  }
+  div.video {
+    width: 100%;
+  }
   a.new-playlist {
     font-size: 13px;
   }

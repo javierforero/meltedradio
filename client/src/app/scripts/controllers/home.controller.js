@@ -30,7 +30,7 @@ export class HomeController {
 
     $scope.getCurrentPlaylist = function() {
       return $scope.currentPlaylist;
-    }
+    };
 
     $scope.playlists = function() {
       return ApiSync.getPlaylists();
@@ -74,7 +74,7 @@ export class HomeController {
       $scope.modalInstance.dismiss('cancel');
     };
 
-    $scope.setPlaylist = function(playlist) {
+    $rootScope.setPlaylist = function(playlist) {
 
        angular.element('div.playlist-content').removeClass('overflow');
         localStorageService.set('currentPlaylist', playlist);

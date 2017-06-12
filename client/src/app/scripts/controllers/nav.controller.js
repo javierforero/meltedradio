@@ -1,5 +1,5 @@
 export class NavController {
-  constructor($scope, $rootScope, $auth, $location, localStorageService, $http, ApiSync) {
+  constructor($scope, $rootScope, $auth, $location, localStorageService, $http, ApiSync, Song) {
     'ngInject';
     function changeNavColor(){
       angular.element('nav.nav-bar').css('color','black');
