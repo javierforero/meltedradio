@@ -97,7 +97,7 @@ url('/assets/Webfont/GreycliffCF-Heavy.ttf') format('truetype'); /* Safari, Andr
 }
 
 nav.nav-bar {
-
+  position: relative;
   img {
     width: 3%;
     height: auto;
@@ -513,6 +513,12 @@ ul#mobile-nav-menu-white {
   background-color: white;
 }
 
+li.mobile-ham {
+  img {
+    position: absolute;
+    right: 20px;
+  }
+}
 
 .display {
   display: block !important;
@@ -541,6 +547,10 @@ td#play-button-table {
     width: 100%;
     height: auto;
   }
+}
+
+div#nav-menu-details-black {
+  margin-top: 31px;
 }
 
 
@@ -628,6 +638,8 @@ td#play-button-table {
   }
 }
 
+
+
 @media only screen and (max-width: 713px) {
 
   div.landing-text-block {
@@ -651,6 +663,13 @@ td#play-button-table {
 
 
 @media only screen and (max-width: 548px) {
+
+  li.mobile-ham {
+    img {
+      right: 15px;
+    }
+  }
+
   nav.nav-bar h1 {
     margin-left: 15px;
     font-size: 25px;
