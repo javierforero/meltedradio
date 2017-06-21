@@ -655,6 +655,16 @@ div#nav-menu-details-black {
   }
 }
 
+@media only screen and (max-width: 663px) {
+  div.video-search-results {
+    width: 100%;
+    min-width: 320px;
+    div.search-vid-controls, iframe {
+      width: 100%;
+    }
+  }
+}
+
 @media only screen and (max-width: 627px) {
   table.song-table {
     font-size: 11px;
