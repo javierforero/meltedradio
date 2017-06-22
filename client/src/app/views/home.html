@@ -3,11 +3,12 @@
       <h4 ng-click="setPlaylist(null)" ng-show="videos != null"><< Results</h4>
       <h3>Your Music</h3>
       <a class="new-playlist" ng-click="newPlaylist()"> + New Playlist</a>
-      <ul class="playlist-list">
-        <li ng-repeat="playlist in playlists()">
-          <h4 ng-click="setPlaylist(playlist)">{{playlist.title}}</h4>
-        </li>
-      </ul>
+      <table class="playlist-list">
+        <tr ng-repeat="playlist in playlists()">
+          <td><h4 ng-click="setPlaylist(playlist)">{{playlist.title}}</h4></td>
+          <td><i ng-click="deletePlaylist(playlist)" class="fa fa-trash-o" aria-hidden="true"></i></td>
+        </tr>
+      </table>
     </div>
     <div class="playlist-content">
       <form ng-submit="getVideos()" class="search-container" ng-show="user.id">

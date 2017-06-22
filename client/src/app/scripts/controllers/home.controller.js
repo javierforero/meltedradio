@@ -158,6 +158,18 @@ export class HomeController {
        });
     };
 
+    $scope.deletePlaylist = function(playlist){
+      
+      $http({
+        method: 'DELETE',
+        url: devApiUrl + '/users/' + playlist.user_id +'/playlists/' + playlist.id
+      }).then(function(response){
+         ApiSync.setPlaylists(response.data.user_playlists);
+      }, function(error){
+           $log(error);
+      });
+    };
+
     var setSearchResults = function(obj) {
       $scope.videos = obj;
     };

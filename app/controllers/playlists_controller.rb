@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     user = User.find(params[:user_id])
     playlists = user.playlists
@@ -43,7 +43,7 @@ class PlaylistsController < ApplicationController
     playlist = user.playlists.find(params[:id])
 
     if playlist.destroy
-      render json: {message: "#{playlist.title} was deleted", status: 200}, status: 200
+      render json: {message: "#{playlist.title} was deleted", user_playlists: user.playlists, status: 200}, status: 200
     else
       render json: {error: "playlist failed to delete", status: 400}, status: 400
     end

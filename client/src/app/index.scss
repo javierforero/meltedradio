@@ -261,10 +261,17 @@ form.form-container {
   font-family: 'Greycliff-bold';
   font-size: 20px;
 }
- .playlist-list {
+ table.playlist-list {
    font-family: 'Greycliff-bold';
-   padding-left: 30px;
+   margin-left: 20px;
    margin-top: 10px;
+   tr td {
+     padding: 5px;
+   }
+   td i.fa {
+     margin-top: 5px;
+     font-size: 17px;
+   }
  }
 
 .playlist {
