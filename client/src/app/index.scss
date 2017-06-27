@@ -369,6 +369,34 @@ div.play-bar {
 
 }
 
+div.mobile-playbar-container {
+  display: none;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  border: 1px solid black;
+
+  div.mobile-playbar {
+    position: relative;
+    padding: 10px 0;
+
+    img.back-button, img.next-button {
+      width: 6%;
+      max-width: 35px;
+      min-width: 32px;
+    }
+
+    img.play-button {
+      width: 10%;
+      max-width: 56px;
+      min-width: 53px;
+    }
+
+  }
+}
+
+
+
 table.songs-table {
   width: 100%;
   th {
@@ -578,6 +606,10 @@ div#nav-menu-details-black {
 }
 
 @media only screen and (max-width: 848px) {
+
+  div.mobile-playbar-container {
+    display: block;
+  }
 
   div.playlist-video-info {
     display: none;

@@ -2,7 +2,7 @@ export class HomeController {
   constructor ($scope, $rootScope, $auth, $location, User, Playlist,localStorageService, $uibModal, Song, ApiSync, $http,$sce, $window, $log, YouTubeApiKeyService) {
     'ngInject';
     $scope.userSignedIn = localStorageService.get('currentUser');
-    $scope.currentPlaylist = null;
+    $rootScope.currentPlaylist = null;
     $scope.songs = null;
     $scope.currentSong = null;
     $scope.previousSong = null;
@@ -29,7 +29,7 @@ export class HomeController {
     }
 
     $scope.getCurrentPlaylist = function() {
-      return $scope.currentPlaylist;
+      return $rootScope.currentPlaylist;
     };
 
     $scope.playlists = function() {
@@ -74,15 +74,15 @@ export class HomeController {
       $scope.modalInstance.dismiss('cancel');
     };
 
-    $rootScope.setPlaylist = function(playlist) {
+    $scope.setPlaylist = function(playlist) {
 
        angular.element('div.playlist-content').removeClass('overflow');
         localStorageService.set('currentPlaylist', playlist);
-        $scope.currentPlaylist =  localStorageService.get('currentPlaylist');
+        $rootScope.currentPlaylist =  localStorageService.get('currentPlaylist');
 
-        if($scope.currentPlaylist) {
+        if($rootScope.currentPlaylist) {
 
-          Song.query({songId: ''},{playlistId: $scope.currentPlaylist.id}).then(function(songs){
+          Song.query({songId: ''},{playlistId: $rootScope.currentPlaylist.id}).then(function(songs){
 
              ApiSync.setSongs(songs);
           });
@@ -149,7 +149,7 @@ export class HomeController {
 
        $http({
          method: 'DELETE',
-         url: devApiUrl + 'playlists/' + $scope.currentPlaylist.id +'/songs/'+ song.id
+         url: devApiUrl + 'playlists/' + $rootScope.currentPlaylist.id +'/songs/'+ song.id
        }).then(function(response){
 
          $scope.setPlaylist(response.data.current_playlist);
@@ -159,7 +159,7 @@ export class HomeController {
     };
 
     $scope.deletePlaylist = function(playlist){
-      
+
       $http({
         method: 'DELETE',
         url: devApiUrl + '/users/' + playlist.user_id +'/playlists/' + playlist.id

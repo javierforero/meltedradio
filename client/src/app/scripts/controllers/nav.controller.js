@@ -14,6 +14,21 @@ export class NavController {
       return ApiSync.getPlaylists();
     };
 
+    $scope.setPlaylist = function(playlist) {
+
+       angular.element('div.playlist-content').removeClass('overflow');
+        localStorageService.set('currentPlaylist', playlist);
+        $rootScope.currentPlaylist =  localStorageService.get('currentPlaylist');
+
+        if($rootScope.currentPlaylist) {
+
+          Song.query({songId: ''},{playlistId: $rootScope.currentPlaylist.id}).then(function(songs){
+
+             ApiSync.setSongs(songs);
+          });
+      }
+    };
+
     this.pageRedirect = function() {
 
       if($rootScope.user.id) {
