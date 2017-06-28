@@ -287,8 +287,8 @@ export class HomeController {
         if(!$scope.currentSong) {
 
          player = new YT.Player('iframe-utube-player', {
-           height: vidHeight,
-           width:  vidWidth,
+           height: '100%',
+           width:  '100%',
            videoId: vidPlay.url,
            playerVars: {'controls': 0, 'rel': 0},
            events: {
