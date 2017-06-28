@@ -159,8 +159,7 @@ body {
 // landing page
 
 div.gif-container {
-  // background-image: url('/assets/images/icecream.gif');
-  height: 100%;
+  height: auto;
   position: relative;
 }
 
@@ -310,6 +309,7 @@ div.playlist-video-content {
       float: right;
       width: 35%;
       height: 100%;
+      border-bottom: 1px solid black;
 
       div.playlist-sub-info {
         height: 38.5%;
@@ -352,9 +352,10 @@ div.play-bar {
   height: 38.5%;
   padding-top: 26px;
   img.back-button, img.next-button {
-    width: 8%;
+    width: 11%;
     height: auto;
     min-width: 20px;
+    max-width: 35px;
   }
   img.back-button {
     margin-right: 10px;
@@ -363,8 +364,9 @@ div.play-bar {
     margin-left: 10px;
   }
   img.play-button {
-    width: 18%;
+    width: 28%;
     min-width: 45px;
+    max-width: 76px;
   }
 
 }
@@ -374,7 +376,7 @@ div.mobile-playbar-container {
   position: absolute;
   width: 100%;
   bottom: 0;
-  border: 1px solid black;
+  background-color: white;
 
   div.mobile-playbar {
     position: relative;
@@ -382,20 +384,19 @@ div.mobile-playbar-container {
 
     img.back-button, img.next-button {
       width: 6%;
-      max-width: 35px;
-      min-width: 32px;
     }
 
     img.play-button {
       width: 10%;
-      max-width: 56px;
-      min-width: 53px;
     }
 
   }
 }
 
-
+div.table-container {
+  overflow-y: auto;
+  height: calc(100% - 333px);
+}
 
 table.songs-table {
   width: 100%;
@@ -607,6 +608,30 @@ div#nav-menu-details-black {
 
 @media only screen and (max-width: 848px) {
 
+  div.table-container {
+    height: calc(100% - 396px);
+  }
+
+  div.mobile-playbar-container {
+
+
+    div.mobile-playbar {
+
+      img.back-button, img.next-button {
+        width: 6%;
+        max-width: 35px;
+        min-width: 25px;
+      }
+
+      img.play-button {
+        width: 10%;
+        max-width: 56px;
+        min-width: 43px;
+      }
+
+    }
+  }
+
   div.mobile-playbar-container {
     display: block;
   }
@@ -680,6 +705,10 @@ div#nav-menu-details-black {
 
 
 @media only screen and (max-width: 713px) {
+
+  div.landing-text-block p#sign-in-form-title {
+    margin-top: 54px;
+  }
 
   div.landing-text-block {
     width: 400px;
