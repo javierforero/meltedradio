@@ -592,6 +592,11 @@ div#nav-menu-details-black {
 
 // media queries
 
+@media only screen and (min-width: 1470px) {
+  div.landing-text-block {
+    width: 85%;
+  }
+}
 
 @media only screen and (max-width: 1076px) {
   div.playlist {
@@ -768,4 +773,17 @@ div#nav-menu-details-black {
     width: 100%;
     height: 400px;
   }
+
+  form.search-container {
+    min-width: 273px;
+    input{
+      width:85%;
+    }
+
+    button {
+      width: 15%;
+    }
+
+  }
+
 }
