@@ -82,7 +82,7 @@
 
 	angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'ng-token-auth', 'rails', 'LocalStorageModule']).constant('malarkey', malarkey).constant('moment', moment).config(_index.config).config(_index2.routerConfig).config(["$authProvider", function ($authProvider) {
 	  $authProvider.configure({
-	    apiUrl: devApiUrl
+	    apiUrl: backendApi
 	  });
 	}]).config(["localStorageServiceProvider", function (localStorageServiceProvider) {
 	  localStorageServiceProvider.setPrefix('meltedRadio');
@@ -121,7 +121,7 @@
 	  return ApiSync;
 	}).factory('Playlist', ["railsResourceFactory", function (railsResourceFactory) {
 	  return railsResourceFactory({
-	    url: devApiUrl + '/playlists',
+	    url: backendApi + '/playlists',
 	    name: 'playlist'
 	  });
 	}]).factory('User', ["railsResourceFactory", function (railsResourceFactory) {

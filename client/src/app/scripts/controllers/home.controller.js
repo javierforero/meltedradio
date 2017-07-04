@@ -12,7 +12,7 @@ export class HomeController {
     var searchCurrentSong = null;
     var prodApiUrl = 'https://meltedradio.herokuapp.com/';
     var devApiUrl = 'http://localhost:3000/';
-    var backendApi = devApiUrl;
+    var backendApi = prodApiUrl;
 
     (function changeNavColor(){
       angular.element('nav.nav-bar').css('color','white');

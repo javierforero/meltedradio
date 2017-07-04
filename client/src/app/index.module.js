@@ -17,7 +17,7 @@ import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive
 
 var devApiUrl = 'http://localhost:3000';
 var prodApiUrl = 'https://meltedradio.herokuapp.com';
-var backendApi = devApiUrl;
+var backendApi = prodApiUrl;
 
 angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'ng-token-auth', 'rails', 'LocalStorageModule'])
   .constant('malarkey', malarkey)
@@ -26,7 +26,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   .config(routerConfig)
   .config(function($authProvider) {
      $authProvider.configure({
-         apiUrl: devApiUrl
+         apiUrl: backendApi
      });
    })
    .config(function(localStorageServiceProvider){
@@ -83,7 +83,7 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   })
   .factory('Playlist', function(railsResourceFactory) {
     return railsResourceFactory({
-      url: devApiUrl+'/playlists',
+      url: backendApi +'/playlists',
       name: 'playlist'
     });
   })
