@@ -15,8 +15,9 @@ import { YouTubeApiKeyService } from '../app/components/apikeys/youTubeApiKey.se
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
-var devApiUrl = 'http://localhost:3000' ;
+var devApiUrl = 'http://localhost:3000';
 var prodApiUrl = 'https://meltedradio.herokuapp.com';
+var backendApi = devApiUrl;
 
 angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'ng-token-auth', 'rails', 'LocalStorageModule'])
   .constant('malarkey', malarkey)
@@ -88,13 +89,13 @@ angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize'
   })
   .factory('User',function(railsResourceFactory){
     return railsResourceFactory({
-      url: devApiUrl +'/users/{{userId}}/playlists',
+      url: backendApi +'/users/{{userId}}/playlists',
       name: 'user'
     });
   })
   .factory('Song', function(railsResourceFactory){
     return railsResourceFactory({
-      url: devApiUrl + '/playlists/{{playlistId}}/songs',
+      url: backendApi + '/playlists/{{playlistId}}/songs',
       name: 'song'
     });
   });

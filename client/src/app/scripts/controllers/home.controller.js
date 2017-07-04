@@ -12,6 +12,7 @@ export class HomeController {
     var searchCurrentSong = null;
     var prodApiUrl = 'https://meltedradio.herokuapp.com/';
     var devApiUrl = 'http://localhost:3000/';
+    var backendApi = devApiUrl;
 
     (function changeNavColor(){
       angular.element('nav.nav-bar').css('color','white');
@@ -53,7 +54,7 @@ export class HomeController {
 
        $http({
          method: 'POST',
-         url:  devApiUrl +'users/' + $scope.userSignedIn.id + '/playlists',
+         url:  backendApi +'users/' + $scope.userSignedIn.id + '/playlists',
          data: {
            title: $scope.text
          }
@@ -129,7 +130,7 @@ export class HomeController {
 
        $http({
          method: 'POST',
-         url: devApiUrl + 'playlists/' + playlist.id +'/songs',
+         url: backendApi + 'playlists/' + playlist.id +'/songs',
          data: {
            title: video.snippet.title,
            artist: video.snippet.description,
@@ -149,7 +150,7 @@ export class HomeController {
 
        $http({
          method: 'DELETE',
-         url: devApiUrl + 'playlists/' + $rootScope.currentPlaylist.id +'/songs/'+ song.id
+         url: backendApi + 'playlists/' + $rootScope.currentPlaylist.id +'/songs/'+ song.id
        }).then(function(response){
 
          $scope.setPlaylist(response.data.current_playlist);
@@ -162,7 +163,7 @@ export class HomeController {
 
       $http({
         method: 'DELETE',
-        url: devApiUrl + '/users/' + playlist.user_id +'/playlists/' + playlist.id
+        url: backendApi + '/users/' + playlist.user_id +'/playlists/' + playlist.id
       }).then(function(response){
          ApiSync.setPlaylists(response.data.user_playlists);
       }, function(error){
