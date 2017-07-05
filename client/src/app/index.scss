@@ -771,6 +771,18 @@ div#nav-menu-details-black {
 
 @media only screen and (max-width: 438px) {
 
+  div.playlist-video-content div.video-and-playbar {
+    height: 276px;
+  }
+
+  div.table-container {
+    height: calc(100% - 276px);
+  }
+
+  table.songs-table {
+    font-size: 11px;
+  }
+
   div.bubble-wrap, div.bubble-wrap {
     overflow-y: auto;
   }
@@ -791,4 +803,17 @@ div#nav-menu-details-black {
 
   }
 
+}
+
+@media only screen
+    and (min-device-width : 375px)
+    and (max-device-width : 667px)
+{
+  div.playlist-video-content div.video-and-playbar {
+    height: 276px;
+  }
+
+  div.table-container {
+    height: calc(100% - 276px);
+  }
 }

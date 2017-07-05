@@ -78,8 +78,10 @@
               </li>
             </ul>
         </div>
-        <iframe enablejsapi="true" width="640" height="360" id="vid-{{videos.indexOf(video)+1}}" ng-src="{{trustSrc(getUrl(video))}}" frameborder='0' allowfullscreen>
-        </iframe>
+        <div class="vid-result-container">
+          <iframe enablejsapi="true" width="640" height="360" id="vid-{{videos.indexOf(video)+1}}" ng-src="{{trustSrc(getUrl(video))}}" frameborder='0' allowfullscreen>
+          </iframe>
+        </div>
       </div>
    </div>
 </div>

@@ -17,7 +17,7 @@ import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive
 
 var devApiUrl = 'http://localhost:3000';
 var prodApiUrl = 'https://meltedradio.herokuapp.com';
-var backendApi = prodApiUrl;
+var backendApi = devApiUrl;
 
 angular.module('meltedRadio', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'ng-token-auth', 'rails', 'LocalStorageModule'])
   .constant('malarkey', malarkey)
