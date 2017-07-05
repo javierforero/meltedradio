@@ -771,6 +771,16 @@ div#nav-menu-details-black {
 
 @media only screen and (max-width: 438px) {
 
+  div.video-search-results iframe {
+      width: 100%;
+      height: auto;
+  }
+
+  div.video-search-results {
+    width: 75%;
+    min-width: 220px;
+  }
+
   div.playlist-video-content div.video-and-playbar {
     height: 276px;
   }
@@ -783,9 +793,6 @@ div#nav-menu-details-black {
     font-size: 11px;
   }
 
-  div.bubble-wrap, div.bubble-wrap {
-    overflow-y: auto;
-  }
   div.landing-text-block {
     width: 100%;
     height: 400px;
