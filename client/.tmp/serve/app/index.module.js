@@ -448,7 +448,7 @@
 
 	    $http({
 	      method: 'DELETE',
-	      url: backendApi + '/users/' + playlist.user_id + '/playlists/' + playlist.id
+	      url: backendApi + 'users/' + playlist.user_id + '/playlists/' + playlist.id
 	    }).then(function (response) {
 	      ApiSync.setPlaylists(response.data.user_playlists);
 	    }, function (error) {
